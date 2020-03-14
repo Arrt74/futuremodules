@@ -1,6 +1,7 @@
 import {useGlobal} from "reactn";
-import {Auth} from "../../globalstorage/GlobalStorage";
 import {updateGlobal} from "../globalhelper/globalHelper";
+
+export const Auth = 'auth';
 
 export const useGetAuth = () => {
   return useGlobal(Auth);
@@ -50,5 +51,5 @@ export const logoffFromProject = authContainer => {
 
 export const useHasUser = () => {
   const [auth] = useGlobal(Auth);
-  return (auth !== null);
+  return (auth !== undefined);
 }

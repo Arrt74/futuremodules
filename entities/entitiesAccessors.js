@@ -1,6 +1,8 @@
 import {useGlobal} from "reactn";
-import {Currents, Entities} from "../../globalstorage/GlobalStorage";
 import {updateGlobal} from "../globalhelper/globalHelper";
+
+export const Entities = 'entities';
+export const Currents = 'currents';
 
 export const useGetEntities = () => {
   return useGlobal(Entities);
