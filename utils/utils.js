@@ -24,3 +24,10 @@ export const getFileNameExt = filename => {
   return filename.split('.').pop().toLowerCase();
 };
 
+// This function will remove the possible / prefix on a path and convert it to lower case
+// It's going to useful to things like getting a string ID from a URL params
+export const sanitizePathRoot = name => {
+  let ret = name[0] === "/" ? name.slice(1) : name;
+  ret = ret.toLowerCase();
+  return ret;
+};
