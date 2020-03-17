@@ -4,7 +4,7 @@ import {Link, Redirect} from "react-router-dom";
 import {api, useApi} from "../../api/apiEntryPoint";
 import {loginUser} from "../authApiCalls";
 
-const Login = () => {
+const Login = (props) => {
   const [formData, setFromData] = useState({
     email: "",
     password: "",
@@ -27,7 +27,7 @@ const Login = () => {
 
   const performLogin = (ev) => {
     ev.preventDefault();
-    api(authApi, loginUser, email, password);
+    api(authApi, loginUser, email, password, props.websocketMessageHandler).then();
   };
 
   return (

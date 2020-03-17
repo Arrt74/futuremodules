@@ -3,7 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 import {api, movieWarning, useApi} from "../../api/apiEntryPoint";
 import {registerUser} from "../authApiCalls";
 
-const Register = () => {
+const Register = (props) => {
   const [formData, setFromData] = useState({
     name: "",
     email: "",
@@ -28,7 +28,7 @@ const Register = () => {
     if (password !== password2) {
       movieWarning(alertStore, "Passwords do not match");
     } else {
-      api( authApi, registerUser, name, email, password );
+      api( authApi, registerUser, name, email, password, props.websocketMessageHandler );
     }
   };
 
