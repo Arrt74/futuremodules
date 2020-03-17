@@ -1,7 +1,8 @@
-import React, {Fragment, useState} from "react";
+import React, {Fragment, useState} from "reactn";
 import {Link, Redirect} from "react-router-dom";
-import {api, movieWarning, useApi} from "../../api/apiEntryPoint";
+import {api, useApi} from "../../api/apiEntryPoint";
 import {registerUser} from "../authApiCalls";
+import {alertWarning} from "../../alerts/alerts";
 
 const Register = (props) => {
   const [formData, setFromData] = useState({
@@ -11,7 +12,7 @@ const Register = (props) => {
     password2: ""
   });
   const authApi = useApi('auth');
-  const [auth, , , alertStore] = authApi;
+  const [auth] = authApi;
 
   if ( auth ) {
     return <Redirect to="/dashboarduser" />;
@@ -26,7 +27,7 @@ const Register = (props) => {
   const onSubmit = e => {
     e.preventDefault();
     if (password !== password2) {
-      movieWarning(alertStore, "Passwords do not match");
+      alertWarning( "Passwords do not match");
     } else {
       api( authApi, registerUser, name, email, password, props.websocketMessageHandler );
     }

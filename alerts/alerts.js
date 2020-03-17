@@ -90,3 +90,23 @@ export const alertWarning = (store, title) => {
   }).then();
 
 }
+
+export const alertDangerNoMovie = (store, title) => {
+
+  store({
+    title: title,
+    text: "",
+    alertType: "danger"
+  }).then();
+
+}
+
+export const alertSuccess = (store, title) => {
+
+  store({
+    title: title,
+    text: getRandomMovieQuote(),
+    alertType: "success"
+  }).then();
+
+}

@@ -1,3 +1,11 @@
+const reservedWords = [
+  "login",
+  "register",
+  "graphql",
+  "gapi",
+  "dashboarduser"
+]
+
 export const alphaBool = flag => {
   return flag === true ? "true" : "false";
 };
@@ -30,4 +38,8 @@ export const sanitizePathRoot = name => {
   let ret = name[0] === "/" ? name.slice(1) : name;
   ret = ret.toLowerCase();
   return ret;
+};
+
+export const sanitizeAvoidReservedWords = words => {
+  return reservedWords.includes(words.toLowerCase()) ? "" : words;
 };

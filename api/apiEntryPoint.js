@@ -1,22 +1,6 @@
 import {apiStatusResponse, isStatusCodeAny400, isStatusCodeSuccessful} from "./apiStatus";
 import {useGlobal} from "reactn";
-import {getRandomMovieQuote} from "../warningsmoviequotes/warningMovieQuotes";
-
-export const setAlert = (store, title, text, type) => {
-  store({
-    title: title,
-    text: text,
-    alertType: type
-  });
-}
-
-export const movieWarning = (store, title) => {
-  store({
-    title: title,
-    text: getRandomMovieQuote(),
-    alertType: "warning"
-  });
-}
+import {alertDangerNoMovie, alertSuccess, alertWarning} from "../alerts/alerts";
 
 export const octetStreamHeader = () => {
   return {
@@ -64,12 +48,13 @@ export const api = async (apiEntry, func, ...args) => {
       // 400s are basically errors so the store won't change but we'll spawn an error and alert
       // the reason of the error will be the res.data itself, at least we can assume so
       statusMessage = res.data;
-      setAlert(alertStore, getRandomMovieQuote(), statusMessage, "warning");
+      alertWarning(alertStore, statusMessage);
     }
 
     return apiStatusResponse(res.status, statusMessage);
   } catch (e) {
     const msg = e.message;
+    alertDangerNoMovie(alertStore, "It's not you, it's us, a wizard has been summoned... Expecto Patronum!!!");
     return apiStatusResponse(tryToGetRealStatusCodeFromException(msg), msg);
   }
 };
@@ -87,6 +72,6 @@ export const useApiSilent = (name) => {
 
 export const alertIfSuccessful = (res, alertStore, title, text) => {
   if (res.isSuccessful) {
-    return setAlert(alertStore, title, text, "success")
+    return alertSuccess(alertStore, title, text)
   }
 };

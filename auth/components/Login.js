@@ -3,6 +3,7 @@ import {Link, Redirect} from "react-router-dom";
 
 import {api, useApi} from "../../api/apiEntryPoint";
 import {loginUser} from "../authApiCalls";
+import {Auth} from "../authAccessors";
 
 const Login = (props) => {
   const [formData, setFromData] = useState({
@@ -11,7 +12,7 @@ const Login = (props) => {
     project: ""
   });
 
-  const authApi = useApi('auth');
+  const authApi = useApi(Auth);
   const [auth] = authApi;
 
   if ( auth ) {

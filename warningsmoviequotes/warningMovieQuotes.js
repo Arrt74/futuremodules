@@ -5,8 +5,6 @@ const randomMovieQuotes = [
   "Say my name...",
   "I am the one who knocks",
   "I am serious. And don't call me Shirley.",
-  "I'm just one stomach flu away from my goal weight.",
-  "I'm about to do to you what Limp Bizkit did to music in the late '90s.",
   "He might be okay. [Beat. Huge explosion.] Well, no, probably not now.",
   "Leave the gun. Take the cannoli.",
   "Is that all he said?",
@@ -17,7 +15,8 @@ const randomMovieQuotes = [
   "The destruction might in fact be very localised, limited to merely our own galaxy.",
   "the result of which could cause a chain reaction that would unravel the very fabric of the spacetime continuum.",
   "There's only one man who can help me!",
-  "I know a guy... Who knows a guy who knows another guy..."
+  "I know a guy... Who knows a guy who knows another guy...",
+  "Time will not slow down when something unpleasant lies ahead."
 ];
 
 const getRandomInt = max => {
