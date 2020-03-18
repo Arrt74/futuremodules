@@ -1,6 +1,6 @@
 import {apiStatusResponse, isStatusCodeAny400, isStatusCodeSuccessful} from "./apiStatus";
 import {useGlobal} from "reactn";
-import {alertDangerNoMovie, alertSuccess, alertWarning} from "../alerts/alerts";
+import {alertDangerNoMovie, alertSuccess, alertWarning, NotificationAlert} from "../alerts/alerts";
 
 export const octetStreamHeader = () => {
   return {
@@ -54,14 +54,14 @@ export const api = async (apiEntry, func, ...args) => {
     return apiStatusResponse(res.status, statusMessage);
   } catch (e) {
     const msg = e.message;
-    alertDangerNoMovie(alertStore, "It's not you, it's us, a wizard has been summoned... Expecto Patronum!!!");
+    if ( alertStore ) alertDangerNoMovie(alertStore, "It's not you, it's us, a wizard has been summoned... Expecto Patronum!!!");
     return apiStatusResponse(tryToGetRealStatusCodeFromException(msg), msg);
   }
 };
 
 export const useApi = (name) => {
   const q1 = useGlobal(name);
-  const q2 = useGlobal('notificationAlert');
+  const q2 = useGlobal(NotificationAlert);
   return [q1[0], q1[1], q2[0], q2[1]];
 };
 

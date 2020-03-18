@@ -41,5 +41,13 @@ export const sanitizePathRoot = name => {
 };
 
 export const sanitizeAvoidReservedWords = words => {
-  return reservedWords.includes(words.toLowerCase()) ? "" : words;
+  return reservedWords.includes(sanitizePathRoot(words)) ? "" : words;
+};
+
+export const isReservedWord = words => {
+  return reservedWords.includes(words.toLowerCase());
+};
+
+export const isReservedWordSanitized = words => {
+  return reservedWords.includes(sanitizePathRoot(words));
 };

@@ -14,7 +14,7 @@ export const acceptInvitationToJoinProject = async (project, email) => {
 }
 
 export const declineInvitationToJoinProject = async (project, persontoadd) => {
-  return await axios.delete("api/user/invitetoproject/", {data: {project, persontoadd}});
+  return await axios.delete("/gapi/user/invitetoproject/", {data: {project, persontoadd}});
 }
 
 export const loginIntoProject = async project => {

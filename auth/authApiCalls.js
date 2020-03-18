@@ -9,8 +9,8 @@ export const loadUser = async () => {
 const getTokenResponse = async (res, websocketMessageHandler) => {
   if ( isStatusCodeSuccessful(res.status) ) {
     localStorage.setItem("token", res.data.token);
-    wscConnect(res.data.session);
     websocketMessageHandler && websocketMessageHandler();
+    wscConnect(res.data.session);
     return await loadUser();
   }
   return res;

@@ -72,7 +72,7 @@ const Register = (props) => {
               value={password}
               onChange={e => onChange(e)}
               minLength="6"
-              autocomplete="new-password"
+              autoComplete="new-password"
             />
           </div>
           <div className="form-group">
