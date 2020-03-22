@@ -30,7 +30,7 @@ export const api = async (apiEntry, func, ...args) => {
     let statusMessage = "OK";
     if (isStatusCodeSuccessful(res.status)) {
       if (store) {
-        if ( alertStore ) {
+        if (alertStore) {
           alertStore(null);
         }
         // 204 it's basically a "reset" code.
@@ -54,10 +54,14 @@ export const api = async (apiEntry, func, ...args) => {
     return apiStatusResponse(res.status, statusMessage);
   } catch (e) {
     const msg = e.message;
-    if ( alertStore ) alertDangerNoMovie(alertStore, "It's not you, it's us, a wizard has been summoned... Expecto Patronum!!!");
+    if (alertStore) alertDangerNoMovie(alertStore, "It's not you, it's us, a wizard has been summoned... Expecto Patronum!!!");
     return apiStatusResponse(tryToGetRealStatusCodeFromException(msg), msg);
   }
 };
+
+export const apiSilent = async (apiEntry, func, ...args) => {
+  return await api([apiEntry[0], apiEntry[1], null, null], func, args);
+}
 
 export const useApi = (name) => {
   const q1 = useGlobal(name);

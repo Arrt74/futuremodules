@@ -5,6 +5,10 @@ export const createProject = async project => {
   return await axios.post("/gapi/user/createProject/", {project});
 };
 
+export const deleteProject = async project => {
+  return await axios.delete("/gapi/user/deleteProject/", {data: {project}});
+};
+
 export const sendInvitationToProject = async (adminuser, project, persontoadd) => {
   return await axios.put("/gapi/user/invitetoproject", {adminuser, project, persontoadd});
 };

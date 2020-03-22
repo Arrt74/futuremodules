@@ -3,7 +3,8 @@ const reservedWords = [
   "register",
   "graphql",
   "gapi",
-  "dashboarduser"
+  "dashboarduser",
+  "dashboardproject"
 ]
 
 export const alphaBool = flag => {
