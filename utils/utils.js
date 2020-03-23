@@ -52,3 +52,8 @@ export const isReservedWord = words => {
 export const isReservedWordSanitized = words => {
   return reservedWords.includes(sanitizePathRoot(words));
 };
+
+export const sanitizeURLParams = urlParams => {
+  const regex = /[{}\s|\\//]/;
+  return regex.exec(urlParams) !== null ? null : urlParams;
+};
