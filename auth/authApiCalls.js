@@ -2,7 +2,6 @@ import axios from "axios";
 import {isStatusCodeSuccessful} from "../api/apiStatus";
 import {wscClose, wscConnect} from "./websockets";
 
-
 const createAntiForgeryTokenHeaders = () => {
     const result = {};
     if (document.cookie) {
