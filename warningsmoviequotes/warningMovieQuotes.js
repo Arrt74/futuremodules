@@ -19,10 +19,23 @@ const randomMovieQuotes = [
   "Time will not slow down when something unpleasant lies ahead."
 ];
 
+const randomMovieQuotesPositive = [
+  "Most excellent!",
+  "Always drink plenty of water.",
+  "We are the music makers, and we are the dream of the dreams.",
+  "Good times ahead.",
+  "Living happily ever after.",
+  "Start each day with a grateful heart."
+];
+
 const getRandomInt = max => {
   return Math.floor(Math.random() * Math.floor(max));
 }
 
 export const getRandomMovieQuote = () => {
   return randomMovieQuotes[getRandomInt(randomMovieQuotes.length)];
+}
+
+export const getRandomMovieQuotePositive = () => {
+  return randomMovieQuotesPositive[getRandomInt(randomMovieQuotes.length)];
 }
