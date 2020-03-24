@@ -22,7 +22,7 @@ const createAntiForgeryTokenHeaders = () => {
     }
     return result;
 }
-  
+
 
 const loadUser = async () => {
     const headers=createAntiForgeryTokenHeaders();
@@ -56,7 +56,7 @@ const registerUser = async (name, email, password, websocketMessageHandler) => {
 
 const logoutUser = async () => {
   const headers=createAntiForgeryTokenHeaders();
-  const res = await axios.put(`/gapi/cleanToken`,headers);
+  const res = await axios.put(`/gapi/cleanToken`, {}, headers);
   localStorage.removeItem("token");
   wscClose();
   return res;

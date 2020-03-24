@@ -67,7 +67,12 @@ export const EHAlert = () => {
   }
 
   return <Fragment/>
-}
+};
+
+export const useAlert = () => {
+  const [,store] = useGlobal(NotificationAlert);
+  return store;
+};
 
 export const useAlert = () => {
   const [,store] = useGlobal(NotificationAlert);
@@ -84,7 +89,7 @@ export const useAlertWarning = (title) => {
     alertType: "warning"
   }).then();
 
-}
+};
 
 export const alertWarning = (store, title) => {
 
@@ -94,7 +99,7 @@ export const alertWarning = (store, title) => {
     alertType: "warning"
   }).then();
 
-}
+};
 
 export const alertDangerNoMovie = (store, title) => {
 
@@ -104,7 +109,7 @@ export const alertDangerNoMovie = (store, title) => {
     alertType: "danger"
   }).then();
 
-}
+};
 
 export const alertSuccess = (store, title) => {
   store({
@@ -113,4 +118,4 @@ export const alertSuccess = (store, title) => {
     alertType: "success"
   }).then();
 
-}
+};
