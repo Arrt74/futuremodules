@@ -74,11 +74,6 @@ export const useAlert = () => {
   return store;
 };
 
-export const useAlert = () => {
-  const [,store] = useGlobal(NotificationAlert);
-  return store;
-}
-
 export const useAlertWarning = (title) => {
 
   const [,store] = useGlobal(NotificationAlert);
