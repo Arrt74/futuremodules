@@ -2,7 +2,7 @@ import React, {Fragment} from "react";
 import Button from 'react-bootstrap/Button'
 import Modal from "react-bootstrap/Modal";
 import Alert from "react-bootstrap/Alert";
-import {getRandomMovieQuote} from "../warningsmoviequotes/warningMovieQuotes";
+import {getRandomMovieQuote, getRandomMovieQuotePositive} from "../warningsmoviequotes/warningMovieQuotes";
 import {useGlobal} from "reactn";
 
 export const ConfirmAlert = 'confirmAlert';
@@ -67,7 +67,12 @@ export const EHAlert = () => {
   }
 
   return <Fragment/>
-}
+};
+
+export const useAlert = () => {
+  const [,store] = useGlobal(NotificationAlert);
+  return store;
+};
 
 export const useAlertWarning = (title) => {
 
@@ -79,7 +84,7 @@ export const useAlertWarning = (title) => {
     alertType: "warning"
   }).then();
 
-}
+};
 
 export const alertWarning = (store, title) => {
 
@@ -89,7 +94,7 @@ export const alertWarning = (store, title) => {
     alertType: "warning"
   }).then();
 
-}
+};
 
 export const alertDangerNoMovie = (store, title) => {
 
@@ -99,14 +104,13 @@ export const alertDangerNoMovie = (store, title) => {
     alertType: "danger"
   }).then();
 
-}
+};
 
 export const alertSuccess = (store, title) => {
-
   store({
     title: title,
-    text: getRandomMovieQuote(),
+    text: getRandomMovieQuotePositive(),
     alertType: "success"
   }).then();
 
-}
+};

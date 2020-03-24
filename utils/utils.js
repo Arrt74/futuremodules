@@ -45,6 +45,11 @@ export const sanitizeAvoidReservedWords = words => {
   return reservedWords.includes(sanitizePathRoot(words)) ? "" : words;
 };
 
+export const sanitizeURLParams = urlParams => {
+  const regex = /[{}\s|\\//]/;
+  return regex.exec(urlParams) !== null ? null : urlParams;
+};
+
 export const isReservedWord = words => {
   return reservedWords.includes(words.toLowerCase());
 };

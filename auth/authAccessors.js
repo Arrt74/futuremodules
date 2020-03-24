@@ -55,6 +55,7 @@ export const useGetUser = () => {
 };
 
 export const getUserName = authContainer => {
+  if ( !authContainer ) return null;
   const [auth] = authContainer;
   return auth ? auth.user.name : null;
 };
