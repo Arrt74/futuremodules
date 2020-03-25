@@ -26,9 +26,7 @@ const createAntiForgeryTokenHeaders = () => {
 
 const loadUser = async () => {
     const headers=createAntiForgeryTokenHeaders();
-    console.log(headers);
     const result=await axios.get(`/gapi/user`,headers);
-    //console.log("RES",result);
     return result;
 }
 
