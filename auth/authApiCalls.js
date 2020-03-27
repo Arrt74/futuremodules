@@ -1,12 +1,13 @@
 import axios from "axios";
 import {isStatusCodeSuccessful} from "../api/apiStatus";
 import {wscClose, wscConnect} from "./websockets";
-import * as globalConfig from "eh_config";
 
 const createAntiForgeryTokenHeaders = () => {
     const result = {};
     if (document.cookie) {
-        const cookieContent=document.cookie.replace(`(?:(?:^|.*;\\s*)${globalConfig.AntiForgeryTokenCookie}\\s*=\\s*([^;]*).*$)|^.*$`, "$1");
+        const regexSearch = `(?:(?:^|.*;\\s*)${process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE}\\s*=\\s*([^;]*).*$)|^.*$`;
+        const regex = RegExp(regexSearch,"i");
+        const cookieContent=document.cookie.replace(regex, "$1");
         if (cookieContent.length>6) {
             //console.log(cookieContent);
             if (cookieContent.startsWith("s%3A")) {
@@ -15,7 +16,7 @@ const createAntiForgeryTokenHeaders = () => {
                     const aft=cookieContent.substr(4,endAft-4);
                     //console.log("*"+aft+"*");
                     result["headers"] = {};
-                    result["headers"][globalConfig.AntiForgeryTokenCookie]=aft;
+                    result["headers"][process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE]=aft;
                 }
             }
         }
