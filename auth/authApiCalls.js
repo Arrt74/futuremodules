@@ -1,11 +1,12 @@
 import axios from "axios";
 import {isStatusCodeSuccessful} from "../api/apiStatus";
 import {wscClose, wscConnect} from "./websockets";
+import * as globalConfig from "eh_config";
 
 const createAntiForgeryTokenHeaders = () => {
     const result = {};
     if (document.cookie) {
-        const cookieContent=document.cookie.replace(/(?:(?:^|.*;\s*)eh_aft\s*=\s*([^;]*).*$)|^.*$/, "$1");
+        const cookieContent=document.cookie.replace(`(?:(?:^|.*;\\s*)${globalConfig.AntiForgeryTokenCookie}\\s*=\\s*([^;]*).*$)|^.*$`, "$1");
         if (cookieContent.length>6) {
             //console.log(cookieContent);
             if (cookieContent.startsWith("s%3A")) {
@@ -13,9 +14,8 @@ const createAntiForgeryTokenHeaders = () => {
                 if (endAft!==-1) {
                     const aft=cookieContent.substr(4,endAft-4);
                     //console.log("*"+aft+"*");
-                    result["headers"] = {
-                        "eh_aft":aft
-                    };
+                    result["headers"] = {};
+                    result["headers"][globalConfig.AntiForgeryTokenCookie]=aft;
                 }
             }
         }
