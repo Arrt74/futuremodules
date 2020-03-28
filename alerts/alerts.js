@@ -44,8 +44,6 @@ export const EHAlert = () => {
             <FormControl
               onChange={ (e) => {
                 const isSame = e.target.value === confirmAlertWithWriteCheck.text;
-                console.log(isSame);
-                console.log(e.target.value);
                 if ( modalConfirmWithWriteDeleteButtonEnabled !== isSame ) {
                   setModalConfirmWithWriteDeleteButtonEnabled(isSame);
                 }
