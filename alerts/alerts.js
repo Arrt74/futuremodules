@@ -38,7 +38,8 @@ export const EHAlert = () => {
         </Modal.Header>}
         <Modal.Body>
           <div>
-          To delete <b>{confirmAlertWithWriteCheck.text}</b> type it below to <b>confirm</b> it.
+          To delete <b>{confirmAlertWithWriteCheck.text}</b> type it below to <b>confirm</b> it.<br/><br/>
+            <b>Warning</b>: once it's gone... It's gone!
           </div>
           <InputGroup className="my-3">
             <FormControl
