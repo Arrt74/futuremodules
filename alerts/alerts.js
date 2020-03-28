@@ -24,37 +24,30 @@ export const EHAlert = () => {
         size="lg"
         aria-labelledby="contained-modal-title-vcenter"
         centered
-        show={true}
-        onClose={() => {
-          setConfirmAlertWithWriteCheck(null).then();
-          setModalConfirmWithWriteDeleteButtonEnabled(false);
-        }}
+        show
       >
-        {confirmAlertWithWriteCheck.title && <Modal.Header closeButton onClick={ () => {
-          setModalConfirmWithWriteDeleteButtonEnabled(false);
-          setConfirmAlertWithWriteCheck(null);
-        }}>
+        {confirmAlertWithWriteCheck.title && <Modal.Header>
           <Modal.Title>{confirmAlertWithWriteCheck.title}</Modal.Title>
         </Modal.Header>}
         <Modal.Body>
           <div>
-          To delete <b>{confirmAlertWithWriteCheck.text}</b> type it below to <b>confirm</b> it.<br/><br/>
+            To delete <b>{confirmAlertWithWriteCheck.text}</b> type it below to <b>confirm</b> it.<br/><br/>
             <b>Warning</b>: once it's gone... It's gone!
           </div>
           <InputGroup className="my-3">
             <FormControl
-              onChange={ (e) => {
+              onChange={(e) => {
                 const isSame = e.target.value === confirmAlertWithWriteCheck.text;
-                if ( modalConfirmWithWriteDeleteButtonEnabled !== isSame ) {
+                if (modalConfirmWithWriteDeleteButtonEnabled !== isSame) {
                   setModalConfirmWithWriteDeleteButtonEnabled(isSame);
                 }
-              } }
+              }}
             />
           </InputGroup>
 
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={ () => {
+          <Button variant="primary" onClick={() => {
             setModalConfirmWithWriteDeleteButtonEnabled(false);
             setConfirmAlertWithWriteCheck(null);
           }}>
@@ -63,7 +56,7 @@ export const EHAlert = () => {
           <Button
             disabled={!modalConfirmWithWriteDeleteButtonEnabled}
             variant={confirmAlertWithWriteCheck.yesType}
-            onClick={ () => {
+            onClick={() => {
               confirmAlertWithWriteCheck.yesCallback();
               setConfirmAlertWithWriteCheck(null).then();
               setModalConfirmWithWriteDeleteButtonEnabled(false);
@@ -90,7 +83,7 @@ export const EHAlert = () => {
         </Modal.Header>}
         <Modal.Body>{confirmAlert.text}</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={ () => setConfirmAlert(null)}>
+          <Button variant="primary" onClick={() => setConfirmAlert(null)}>
             {confirmAlert.noText}
           </Button>
           <Button variant={confirmAlert.yesType} onClick={confirmAlert.yesCallback}>
@@ -134,6 +127,11 @@ export const EHAlert = () => {
 
 export const useAlert = () => {
   const [, store] = useGlobal(NotificationAlert);
+  return store;
+};
+
+export const useConfirmAlertWithWriteCheck = () => {
+  const [, store] = useGlobal(ConfirmAlertWithWriteCheck);
   return store;
 };
 

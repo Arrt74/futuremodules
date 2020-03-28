@@ -16,7 +16,8 @@ const randomMovieQuotes = [
   "the result of which could cause a chain reaction that would unravel the very fabric of the spacetime continuum.",
   "There's only one man who can help me!",
   "I know a guy... Who knows a guy who knows another guy...",
-  "Time will not slow down when something unpleasant lies ahead."
+  "Time will not slow down when something unpleasant lies ahead.",
+  "Who ya gonna call?"
 ];
 
 const randomMovieQuotesPositive = [
