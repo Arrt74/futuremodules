@@ -27,7 +27,7 @@ export const EHAlert = () => {
         show
       >
         {confirmAlertWithWriteCheck.title && <Modal.Header>
-          <Modal.Title>{confirmAlertWithWriteCheck.title}</Modal.Title>
+          <Modal.Title><b>{confirmAlertWithWriteCheck.title}</b></Modal.Title>
         </Modal.Header>}
         <Modal.Body>
           <div>

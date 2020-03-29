@@ -16,6 +16,10 @@ export const checkQueryHasLoadedWithData = queryResult => {
   return queryResult && queryResult.data && queryResult.loading === false;
 };
 
+export const checkQueryHasLoadedWith = (queryResult, value) => {
+  return queryResult && queryResult.data && queryResult.data[value] && queryResult.loading === false;
+};
+
 export const checkQueryArrayNotEmpty = (queryResult, arrayName) => {
   return queryResult.data[arrayName].length > 0;
 };
