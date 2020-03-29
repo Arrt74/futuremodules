@@ -11,3 +11,15 @@ export const useQueryData = (query) => {
 
   return data;
 };
+
+export const checkQueryHasLoadedWithData = queryResult => {
+  return queryResult && queryResult.data && queryResult.loading === false;
+};
+
+export const checkQueryArrayNotEmpty = (queryResult, arrayName) => {
+  return queryResult.data[arrayName].length > 0;
+};
+
+export const queryGetValue = (queryResult, value) => {
+  return queryResult.data[value];
+};

@@ -103,7 +103,7 @@ export const EHAlert = () => {
       marginLeft: "-45%",
       width: "90%",
     }
-    const outlineVariant = "outline-secondary";
+    const outlineVariant = "info";
     return (
       <div style={centered}>
         <Alert key={notificationAlert.title} variant={notificationAlert.alertType}
@@ -112,7 +112,7 @@ export const EHAlert = () => {
                }} dismissible>
           {notificationAlert.title && <Alert.Heading>{notificationAlert.title}</Alert.Heading>}
           {notificationAlert.text}
-          <div className="d-flex justify-content-end">
+          <div className="mt-3">
             <Button onClick={() => setNotificationAlert(null).then()} variant={outlineVariant}>
               Alright...
             </Button>
