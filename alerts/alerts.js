@@ -102,6 +102,7 @@ export const EHAlert = () => {
       // marginTop: "-50px",
       marginLeft: "-45%",
       width: "90%",
+      zIndex: 1000000000000
     }
     const outlineVariant = "info";
     return (
