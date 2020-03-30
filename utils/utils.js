@@ -57,3 +57,7 @@ export const isReservedWord = words => {
 export const isReservedWordSanitized = words => {
   return reservedWords.includes(sanitizePathRoot(words));
 };
+
+export const arrayExistsNotEmpty = data => {
+  return data && data.length > 0;
+}
