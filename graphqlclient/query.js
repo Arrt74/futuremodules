@@ -27,3 +27,20 @@ export const checkQueryArrayNotEmpty = (queryResult, arrayName) => {
 export const queryGetValue = (queryResult, value) => {
   return queryResult.data[value];
 };
+
+export const checkQueryLoadedWithValueArray = (query) => {
+  return !query.loading && query.data && query.data[Object.keys(query.data)[0]] && query.data[Object.keys(query.data)[0]].length > 0;
+};
+
+export const checkQueryLoadedWithValue = (query) => {
+  return !query.loading && query.data && query.data[Object.keys(query.data)[0]];
+};
+
+export const getQueryLoadedWithValue = (query) => {
+  return checkQueryLoadedWithValue(query) ? query.data[Object.keys(query.data)[0]] : null;
+};
+
+export const getQueryLoadedWithValueArrayNotEmpty = (query) => {
+  return checkQueryLoadedWithValueArray(query) ? query.data[Object.keys(query.data)[0]] : null;
+};
+
