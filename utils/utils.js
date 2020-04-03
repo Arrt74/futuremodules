@@ -6,7 +6,7 @@ const reservedWords = [
   "webrtc",
   "dashboarduser",
   "dashboardproject"
-]
+];
 
 export const alphaBool = flag => {
   return flag === true ? "true" : "false";
@@ -61,4 +61,17 @@ export const isReservedWordSanitized = words => {
 
 export const arrayExistsNotEmpty = data => {
   return data && data.length > 0;
-}
+};
+
+export const log = (text) => {
+  console.log("[Info] " + text);
+};
+
+export const logWarning = (text) => {
+  console.log("[Warning] " + text);
+};
+
+export const logError = (text) => {
+  console.trace("[Error] " + text);
+};
+
