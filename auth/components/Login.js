@@ -1,9 +1,10 @@
-import React, {Fragment, useState} from "react";
+import React, {useState} from "react";
 import {Link, Redirect} from "react-router-dom";
 
 import {api, useApi} from "../../api/apiEntryPoint";
 import {loginUser} from "../authApiCalls";
 import {Auth} from "../authAccessors";
+import {Button, Col, Container, Form, Row} from "react-bootstrap";
 
 const Login = (props) => {
   const [formData, setFromData] = useState({
@@ -15,11 +16,11 @@ const Login = (props) => {
   const authApi = useApi(Auth);
   const [auth] = authApi;
 
-  if ( auth ) {
-    return <Redirect to="/dashboarduser" />;
+  if (auth) {
+    return <Redirect to="/dashboarduser"/>;
   }
 
-  const { email, password } = formData;
+  const {email, password} = formData;
   const onChange = e =>
     setFromData({
       ...formData,
@@ -32,44 +33,60 @@ const Login = (props) => {
   };
 
   return (
-    <Fragment>
-      <section className="container">
-        <h1 className="large text-info">
-          <br />
-          Login
-        </h1>
-        <p className="lead">
-          <span className="text-warning"><i className="fas fa-user" /></span> Log-in Into Your Account
-        </p>
-        <form className="form" onSubmit={(ev) => performLogin(ev)}>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              autoComplete="email"
-              name="email"
-              value={email}
-              onChange={e => onChange(e)}
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              autoComplete="current-password"
-              value={password}
-              onChange={e => onChange(e)}
-              minLength="6"
-            />
-          </div>
-          <input type="submit" className="btn btn-info" value="Login" />
-        </form>
-        <p className="my-3">
-          Don't have an account? <Link to="/register"><span className="text-info">Sign Up</span></Link>
-        </p>
-      </section>
-    </Fragment>
+    <Container fluid>
+      <Row>
+        <br/>
+        <br/>
+        <br/>
+      </Row>
+      <Row>
+        <Col/>
+        <Col>
+          <h1 className="text-info">
+            Login
+          </h1>
+        </Col>
+        <Col/>
+      </Row>
+      <Row>
+        <Col/>
+        <Col>
+          <p className="lead">
+            <span className="text-warning"><i className="fas fa-user"/></span> Log-in Into Your Account
+          </p>
+        </Col>
+        <Col/>
+      </Row>
+      <Row>
+        <Col/>
+        <Col>
+          <Form onSubmit={(ev) => performLogin(ev)}>
+            <br/>
+            <Form.Control name={"email"} type={"email"} placeHolder={"enter email"} onChange={e => onChange(e)}/>
+            <Form.Text className="text-muted">
+              We'll never share your email with anyone else.
+            </Form.Text>
+            <br/>
+            <Form.Group controlId="formBasicPassword">
+              <Form.Control name="password" type="password" placeholder="Password" minLength="8" autoComplete="current-password" onChange={e => onChange(e)}/>
+            </Form.Group>
+            <Button variant="info" type="submit">
+              Submit
+            </Button>
+          </Form>
+        </Col>
+        <Col/>
+      </Row>
+      <Row>
+        <Col/>
+        <Col>
+          <p className="my-3">
+            Don't have an account? <Link to="/register"><span className="text-info">Sign Up</span></Link>
+          </p>
+        </Col>
+        <Col/>
+      </Row>
+    </Container>
   );
 };
 
