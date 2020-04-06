@@ -110,7 +110,7 @@ export const Video = styled.video `{
   border-radius: 5px;
 }`;
 
-export const VideoPhoneChat = styled.div `{
+export const VideoPhoneChatContainer = styled.div `{
   width: 320px;
 }`;
 
