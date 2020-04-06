@@ -32,6 +32,7 @@ function sendToServer(msg) {
 // this function sends a "username" message to set our username for this
 // session.
 function setUsername() {
+  console.log("SetUsername");
   sendToServer({
     name: myUsername,
     date: Date.now(),
@@ -79,22 +80,12 @@ export function connect(username, messageCallback) {
         setUsername();
         break;
 
-      case "username":
-        break;
-
       case "message":
         messageCallback({
           timestamp: timeStr,
           username: msg.name,
           text: msg.text
         });
-        break;
-
-      case "userlist":      // Received an updated user list
-        // if (msg.users.length > 1) {
-        //   const invitedUser = msg.users[0] !== myUsername ? msg.users[0] : msg.users[1];
-        //   invite(invitedUser).then();
-        // }
         break;
 
       case "invite":      // Received an updated user list

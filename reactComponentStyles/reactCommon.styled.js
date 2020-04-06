@@ -103,3 +103,14 @@ export const LightColorTextSpanBold = styled.span` {
   font-weight: bold;
   font-size: ${props => props.fontSize};  
 }`;
+
+export const Video = styled.video `{
+  background-color: var(--dark-color-transparent);
+  border: 1px solid var(--light);
+  border-radius: 5px;
+}`;
+
+export const VideoPhoneChat = styled.div `{
+  width: 320px;
+}`;
+
