@@ -4,6 +4,7 @@ import {api, useApi} from "../../api/apiEntryPoint";
 import {registerUser} from "../authApiCalls";
 import {alertWarning, useAlert} from "../../alerts/alerts";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
+import {LoginRegisterContainer} from "./auth.styled";
 
 const Register = (props) => {
   const [formData, setFromData] = useState({
@@ -36,51 +37,50 @@ const Register = (props) => {
   };
 
   return (
+    <LoginRegisterContainer>
     <Container fluid>
       <Row>
         <br/>
-        <br/>
-        <br/>
       </Row>
       <Row>
-        <Col sm={3}/>
-        <Col sm={6}>
+        <Col sm={2}/>
+        <Col sm={8}>
           <h1 className="text-info">
             Sign Up
           </h1>
         </Col>
-        <Col sm={3}/>
+        <Col sm={2}/>
       </Row>
       <Row>
-        <Col sm={3}/>
-        <Col sm={6}>
+        <Col sm={2}/>
+        <Col sm={8}>
           <p className="lead">
             <span className="text-warning"><i className="fas fa-user"/></span> Create Your Account
           </p>
         </Col>
-        <Col sm={3}/>
+        <Col sm={2}/>
       </Row>
       <br/>
       <Row>
-        <Col sm={3}/>
-        <Col sm={6}>
+        <Col sm={2}/>
+        <Col sm={8}>
           <Form onSubmit={(ev) => onSubmit(ev)}>
             <Form.Group as={Row} controlId="formBasicUserName">
-              <Form.Label column sm={2} className={"text-light"}>
+              <Form.Label column sm={2} className={"text-white  font-weight-bold"}>
                 Name
               </Form.Label>
               <Col sm={10}>
-                <Form.Control name={"name"} type={"text"} placeHolder={"How people will see you"}
+                <Form.Control name={"name"} type={"text"} placeholder={"How people will see you"}
                               onChange={e => onChange(e)} required/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formBasicEmail">
-              <Form.Label column sm={2} className={"text-light"}>
+              <Form.Label column sm={2} className={"text-white  font-weight-bold"}>
                 Email
               </Form.Label>
               <Col sm={10}>
-                <Form.Control name={"email"} type={"email"} placeHolder={"Enter email"} onChange={e => onChange(e)}/>
+                <Form.Control name={"email"} type={"email"} placeholder={"Enter email"} onChange={e => onChange(e)} required/>
                 <Form.Text className="text-muted">
                   We'll never share your email with anyone else.
                 </Form.Text>
@@ -88,22 +88,22 @@ const Register = (props) => {
             </Form.Group>
 
             <Form.Group as={Row} controlId="formBasicPassword">
-              <Form.Label column sm={2} className={"text-light"}>
+              <Form.Label column sm={2} className={"text-white  font-weight-bold"}>
                 Password
               </Form.Label>
               <Col sm={10}>
                 <Form.Control name="password" type="password" placeholder="Password" minLength="8"
-                              autoComplete="new-password" onChange={e => onChange(e)}/>
+                              autoComplete="new-password" onChange={e => onChange(e)} required/>
               </Col>
             </Form.Group>
 
             <Form.Group as={Row} controlId="formBasicPassword2">
-              <Form.Label column sm={2} className={"text-light"}>
+              <Form.Label column sm={2} className={"text-white  font-weight-bold"}>
                 Confirm
               </Form.Label>
               <Col sm={10}>
                 <Form.Control name="password2" type="password" placeholder="Confirm Password" minLength="8"
-                              onChange={e => onChange(e)}/>
+                              onChange={e => onChange(e)} required/>
               </Col>
             </Form.Group>
 
@@ -112,18 +112,19 @@ const Register = (props) => {
             </Button>
           </Form>
         </Col>
-        <Col sm={3}/>
+        <Col sm={2}/>
       </Row>
       <Row>
-        <Col sm={3}/>
-        <Col sm={6}>
+        <Col sm={2}/>
+        <Col sm={8}>
           <p className="my-3">
             Already have an account? <Link to="/login"><span className="text-info">Sign In</span></Link>
           </p>
         </Col>
-        <Col sm={3}/>
+        <Col sm={2}/>
       </Row>
     </Container>
+    </LoginRegisterContainer>
   );
 };
 
