@@ -1,5 +1,4 @@
 import {log, logError} from "../utils/utils";
-import {useGlobal} from "reactn";
 
 var mediaConstraints = {
   audio: true,            // We want an audio track
@@ -16,7 +15,6 @@ var connection = null;
 var clientID = 0;
 var targetUsername = null;      // To store username of other peer
 var myPeerConnection = null;    // RTCPeerConnection
-var transceiver = null;         // RTCRtpTransceiver
 var webcamStream = null;        // MediaStream from webcam
 
 // Send a JavaScript object by converting it to JSON and sending
@@ -42,10 +40,21 @@ function setUsername() {
   });
 }
 
+export const phoneCall = (invitedUser) => {
+  invite(invitedUser).then();
+  // sendToServer({
+  //   name: myUsername,
+  //   date: Date.now(),
+  //   invitedUser: myUsername,
+  //   type: "invite"
+  // });
+}
+
 // Open and configure the connection to the WebSocket server.
 
 export function connect(username, messageCallback) {
 
+  console.log("Setting first username: ", username);
   myUsername = username;
   const scheme = "wss";
   const serverUrl = scheme + "://" + myHostname;
@@ -58,8 +67,6 @@ export function connect(username, messageCallback) {
   }
 
   connection.onmessage = function (evt) {
-    // var chatBox = document.querySelector(".chatbox");
-    var text = "";
     var msg = JSON.parse(evt.data);
     log("Message received: ");
     console.dir(msg);
@@ -73,12 +80,9 @@ export function connect(username, messageCallback) {
         break;
 
       case "username":
-        text = "<b>User <em>" + msg.name + "</em> signed in at " + timeStr + "</b><br>";
-        // if ( chatService ) chatService(text);
         break;
 
       case "message":
-        text = "(" + timeStr + ") <b>" + msg.name + "</b>: " + msg.text + "<br>";
         messageCallback({
           timestamp: timeStr,
           username: msg.name,
@@ -86,17 +90,15 @@ export function connect(username, messageCallback) {
         });
         break;
 
-      case "rejectusername":
-        text = "<b>Your username has been set to <em>" + myUsername +
-          "</em> because the name you chose is in use.</b><br>";
-        // if ( chatService ) chatService(text);
+      case "userlist":      // Received an updated user list
+        // if (msg.users.length > 1) {
+        //   const invitedUser = msg.users[0] !== myUsername ? msg.users[0] : msg.users[1];
+        //   invite(invitedUser).then();
+        // }
         break;
 
-      case "userlist":      // Received an updated user list
-        if (msg.users.length > 1) {
-          const invitedUser = msg.users[0] !== myUsername ? msg.users[0] : msg.users[1];
-          invite(invitedUser).then();
-        }
+      case "invite":      // Received an updated user list
+        invite(msg.invitedUser).then();
         break;
 
       // Signaling messages: these messages are used to trade WebRTC
@@ -192,7 +194,7 @@ async function handleNegotiationNeededEvent() {
     // return to the caller. Another negotiationneeded event
     // will be fired when the state stabilizes.
 
-    if (myPeerConnection.signalingState != "stable") {
+    if (myPeerConnection.signalingState !== "stable") {
       log("     -- The connection isn't stable yet; postponing...")
       return;
     }
@@ -269,6 +271,9 @@ function handleICEConnectionStateChangeEvent(event) {
     case "disconnected":
       closeVideoCall();
       break;
+    default:
+      // What else???
+      break;
   }
 }
 
@@ -284,6 +289,9 @@ function handleSignalingStateChangeEvent(event) {
   switch (myPeerConnection.signalingState) {
     case "closed":
       closeVideoCall();
+      break;
+    default:
+      // What else???
       break;
   }
 }
@@ -302,33 +310,6 @@ function handleICEGatheringStateChangeEvent(event) {
   log("*** ICE gathering state changed to: " + myPeerConnection.iceGatheringState);
 }
 
-// Given a message containing a list of usernames, this function
-// populates the user list box with those names, making each item
-// clickable to allow starting a video call.
-
-function handleUserlistMsg(msg) {
-  var i;
-  var listElem = document.querySelector(".userlistbox");
-
-  // Remove all current list members. We could do this smarter,
-  // by adding and updating users instead of rebuilding from
-  // scratch but this will do for this sample.
-
-  while (listElem.firstChild) {
-    listElem.removeChild(listElem.firstChild);
-  }
-
-  // Add member names from the received list.
-
-  msg.users.forEach(function (username) {
-    var item = document.createElement("li");
-    item.appendChild(document.createTextNode(username));
-    item.addEventListener("click", invite, false);
-
-    listElem.appendChild(item);
-  });
-}
-
 // Close the RTCPeerConnection and reset variables so that the user can
 // make or receive another call if they wish. This is called both
 // when the user hangs up, the other user hangs up, or if a connection
@@ -340,25 +321,23 @@ function closeVideoCall() {
   log("Closing the call");
 
   // Close the RTCPeerConnection
-
   if (myPeerConnection) {
     log("--> Closing the peer connection");
 
+    // Stop all transceivers on the connection
+    myPeerConnection.getTransceivers().forEach(transceiver => {
+      console.log("Trnsreceived:", transceiver);
+      // transceiver.stop()
+    });
+
     // Disconnect all our event listeners; we don't want stray events
     // to interfere with the hangup while it's ongoing.
-
     myPeerConnection.ontrack = null;
     myPeerConnection.onnicecandidate = null;
     myPeerConnection.oniceconnectionstatechange = null;
     myPeerConnection.onsignalingstatechange = null;
     myPeerConnection.onicegatheringstatechange = null;
     myPeerConnection.onnotificationneeded = null;
-
-    // Stop all transceivers on the connection
-
-    myPeerConnection.getTransceivers().forEach(transceiver => {
-      transceiver.stop();
-    });
 
     // Stop the webcam preview as well by pausing the <video>
     // element, then stopping each of the getUserMedia() tracks
@@ -440,7 +419,7 @@ async function invite(invitedName) {
     // not linked together in any way yet.
 
     log("Setting up connection to invite user: " + targetUsername);
-    createPeerConnection();
+    await createPeerConnection();
 
     // Get access to the webcam stream and attach it to the
     // "preview" box (id "local_video").
@@ -457,7 +436,7 @@ async function invite(invitedName) {
 
     try {
       webcamStream.getTracks().forEach(
-        transceiver = track => myPeerConnection.addTransceiver(track, {streams: [webcamStream]})
+        track => myPeerConnection.addTransceiver(track, {streams: [webcamStream]})
       );
     } catch (err) {
       handleGetUserMediaError(err);
@@ -487,7 +466,7 @@ async function handleVideoOfferMsg(msg) {
 
   // If the connection isn't stable yet, wait for it...
 
-  if (myPeerConnection.signalingState != "stable") {
+  if (myPeerConnection.signalingState !== "stable") {
     log("  - But the signaling state isn't stable, so triggering rollback");
 
     // Set the local and remove descriptions for rollback; don't proceed
@@ -518,7 +497,7 @@ async function handleVideoOfferMsg(msg) {
 
     try {
       webcamStream.getTracks().forEach(
-        transceiver = track => myPeerConnection.addTransceiver(track, {streams: [webcamStream]})
+        track => myPeerConnection.addTransceiver(track, {streams: [webcamStream]})
       );
     } catch (err) {
       handleGetUserMediaError(err);

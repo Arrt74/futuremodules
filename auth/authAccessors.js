@@ -60,6 +60,10 @@ export const getUserName = authContainer => {
   return auth ? auth.user.name : null;
 };
 
+export const getAuthUserName = auth => {
+  return auth ? auth.user.name : null;
+};
+
 export const useGetUserName = () => {
   const [auth] = useGlobal(Auth);
   return auth ? auth.user.name : null;
