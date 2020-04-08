@@ -128,6 +128,7 @@ const WasmCanvas = (props) => {
   const canvasPadding = props.padding ? props.padding : '0px'
   const canvasMargin = props.margin ? props.margin : '0px'
   const canvasRadius = props.borderRadius ? props.borderRadius : '0px'
+  const border = props.border ? props.border : 'auto'
 
   const canvasStyle = {
     visibility: visibility,
@@ -135,7 +136,8 @@ const WasmCanvas = (props) => {
     height: canvasSizeY,
     margin: canvasMargin,
     padding: canvasPadding,
-    borderRadius: canvasRadius
+    borderRadius: canvasRadius,
+    border: border
   }
 
   return (

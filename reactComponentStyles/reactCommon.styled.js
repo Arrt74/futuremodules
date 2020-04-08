@@ -32,8 +32,8 @@ export const NiceSearchBar = styled.input` {
 
 export const AvatarRound = styled.img` {
   vertical-align: middle;
-  width: 30px;
-  height: 30px;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
   border: 2px solid var(--logo-color-1);
 }`;
@@ -104,6 +104,17 @@ export const LightColorTextSpanBold = styled.span` {
   font-size: ${props => props.fontSize};  
 }`;
 
+export const SecondaryAltColorTextSpan = styled.span` {
+  color: var(--secondary-alt-color);  
+  font-size: ${props => props.fontSize};  
+}`;
+
+export const SecondaryAltColorTextSpanBold = styled.span` {
+  color: var(--secondary-alt-color);  
+  font-weight: bold;
+  font-size: ${props => props.fontSize};  
+}`;
+
 export const Video = styled.video `{
   background-color: var(--dark-color-transparent);
   border: 1px solid var(--light);
@@ -111,6 +122,7 @@ export const Video = styled.video `{
 }`;
 
 export const VideoPhoneChatContainer = styled.div `{
-  width: 320px;
+  width: 100%;
+  overflow: hidden;
 }`;
 

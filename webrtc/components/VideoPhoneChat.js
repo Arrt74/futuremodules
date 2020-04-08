@@ -1,9 +1,14 @@
 import React, {useEffect, withGlobal} from "reactn";
 import {getAuthUserName} from "../../auth/authAccessors";
-import {Button, Container, FormControl, InputGroup, Row} from "react-bootstrap";
-import {connect, hangUpCall, phoneCall, sendChatMessage} from "../client";
+import {Button, ButtonGroup, Container, FormControl, InputGroup, Row} from "react-bootstrap";
+import {connect, phoneCall, sendChatMessage} from "../client";
 import {useState} from "react";
-import {Video, VideoPhoneChatContainer} from "../../reactComponentStyles/reactCommon.styled";
+import {
+  InfoTextSpanBold,
+  LightColorTextSpan,
+  Video,
+  VideoPhoneChatContainer
+} from "../../reactComponentStyles/reactCommon.styled";
 
 const VideoPhoneChat = (props) => {
 
@@ -36,27 +41,15 @@ const VideoPhoneChat = (props) => {
   return (
     <VideoPhoneChatContainer>
       <Container>
-        <Row>
-          <Video id="received_video" width={"250px"} height={"240px"} autoPlay/>
+        <Row className={"my-2"}>
+          <Video id="received_video" width={"100%"} autoPlay/>
         </Row>
-        <Row>
-          <Video id="local_video" width={"250px"} height={"240px"} autoPlay muted/>
-        </Row>
-        <Row>
-          <Button id="call-button" onClick={() => makePhoneCall()}>
-            Call
-          </Button>
-          <Button id="hangup-button" onClick={() => hangUpCall()} disabled={true}>
-            Hang Up
-          </Button>
+        <Row className={"my-2"}>
+          <Video id="local_video" width={"100%"} autoPlay muted/>
         </Row>
         <Row>
           <ul>
-            {currentChat.map((elem) => {
-              return (
-                <li> {elem.timestamp} <b>{elem.username}</b>: {elem.text}</li>
-              )
-            })}
+            {currentChat.map(elem => (<li> <InfoTextSpanBold>{elem.username}</InfoTextSpanBold>: <LightColorTextSpan fontSize={"0.75rem"}>{elem.text}</LightColorTextSpan> </li>))}
           </ul>
           <InputGroup className="mb-3" id="text" type="text" name="text" maxLength="256" placeholder="..."
                       autoComplete="off" onKeyUp={(evt) => {
@@ -66,10 +59,17 @@ const VideoPhoneChat = (props) => {
             }
           }}>
             <InputGroup.Prepend>
-              <InputGroup.Text id="basic-addon1">@</InputGroup.Text>
+              <InputGroup.Text id="basic-addon1"><i className="fas fa-pencil-alt"/></InputGroup.Text>
             </InputGroup.Prepend>
             <FormControl/>
           </InputGroup>
+        </Row>
+        <Row>
+          <ButtonGroup aria-label="">
+            <Button variant="primary"><i className={"fas fa-comments"}/>{" "}chat</Button>
+            <Button variant="info"><i className={"fas fa-phone-alt"}/>{" "}phone</Button>
+            <Button variant="success" onClick={() => makePhoneCall()}><i className={"fas fa-video"}/>{" "}video</Button>
+          </ButtonGroup>
         </Row>
       </Container>
     </VideoPhoneChatContainer>

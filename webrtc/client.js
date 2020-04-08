@@ -229,7 +229,6 @@ async function handleNegotiationNeededEvent() {
 function handleTrackEvent(event) {
   log("*** Track event");
   document.getElementById("received_video").srcObject = event.streams[0];
-  document.getElementById("hangup-button").disabled = false;
 }
 
 // Handles |icecandidate| events by forwarding the specified
@@ -349,8 +348,6 @@ function closeVideoCall() {
   }
 
   // Disable the hangup button
-
-  document.getElementById("hangup-button").disabled = true;
   targetUsername = null;
 }
 
