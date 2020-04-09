@@ -63,6 +63,10 @@ export const arrayExistsNotEmpty = data => {
   return data && data.length > 0;
 };
 
+export const arrayExistsNotEmptyOn = (obj, arrayName) => {
+  return obj && obj[arrayName] && obj[arrayName].length > 0;
+};
+
 export const log = (text) => {
   console.log("[Info] " + text);
 };
