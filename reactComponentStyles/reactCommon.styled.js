@@ -35,6 +35,15 @@ export const Flex = styled.div` {
     align-items: baseline;
 }`;
 
+export const MarginBorderDiv = styled.div` {
+  border: 1px solid var(--primary-color);
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 10px;
+}`;
+
+
+
 export const AvatarRound = styled.img` {
   vertical-align: middle;
   width: 40px;
