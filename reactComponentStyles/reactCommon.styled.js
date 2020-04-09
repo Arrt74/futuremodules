@@ -42,7 +42,9 @@ export const MarginBorderDiv = styled.div` {
   padding: 10px;
 }`;
 
-
+export const RightBorder = styled.div` {
+  border-right: 1px solid var(--primary-color);
+}`;
 
 export const AvatarRound = styled.img` {
   vertical-align: middle;
