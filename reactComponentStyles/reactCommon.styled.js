@@ -30,6 +30,11 @@ export const NiceSearchBar = styled.input` {
   }
 }`;
 
+export const Flex = styled.div` {
+    display: flex;
+    align-items: baseline;
+}`;
+
 export const AvatarRound = styled.img` {
   vertical-align: middle;
   width: 40px;
@@ -39,80 +44,80 @@ export const AvatarRound = styled.img` {
 }`;
 
 export const InfoTextSpan = styled.span` {
-  color: var(--info);  
-  font-size: ${props => props.fontSize};  
+  color: var(--info);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const InfoTextSpanBold = styled.span` {
-  color: var(--info);  
+  color: var(--info);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const Logo1TextSpan = styled.span` {
-  color: var(--logo-color-1);  
-  font-size: ${props => props.fontSize};  
+  color: var(--logo-color-1);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const Logo1TextSpanBold = styled.span` {
-  color: var(--logo-color-1);  
+  color: var(--logo-color-1);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const Logo2TextSpan = styled.span` {
-  color: var(--logo-color-2);  
-  font-size: ${props => props.fontSize};  
+  color: var(--logo-color-2);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const Logo2TextSpanBold = styled.span` {
-  color: var(--logo-color-2);  
+  color: var(--logo-color-2);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const SuccessTextSpan = styled.span` {
-  color: var(--success);  
-  font-size: ${props => props.fontSize};  
+  color: var(--success);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const SuccessTextSpanBold = styled.span` {
-  color: var(--success);  
+  color: var(--success);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const LightTextSpan = styled.span` {
   color: var(--light);
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const LightTextSpanBold = styled.span` {
-  color: var(--light);  
+  color: var(--light);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const LightColorTextSpan = styled.span` {
-  color: var(--light-color);  
-  font-size: ${props => props.fontSize};  
+  color: var(--light-color);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const LightColorTextSpanBold = styled.span` {
-  color: var(--light-color);  
+  color: var(--light-color);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const SecondaryAltColorTextSpan = styled.span` {
-  color: var(--secondary-alt-color);  
-  font-size: ${props => props.fontSize};  
+  color: var(--secondary-alt-color);
+  font-size: ${props => props.fontSize};
 }`;
 
 export const SecondaryAltColorTextSpanBold = styled.span` {
-  color: var(--secondary-alt-color);  
+  color: var(--secondary-alt-color);
   font-weight: bold;
-  font-size: ${props => props.fontSize};  
+  font-size: ${props => props.fontSize};
 }`;
 
 export const Video = styled.video `{
