@@ -29,6 +29,10 @@ export const Flex = styled.div` {
     align-items: baseline;
 }`;
 
+export const Div50 = styled.div` {
+    width: 50%;
+}`;
+
 export const Mx1 = styled.span` {
   margin-left: 1rem;
 }`;
@@ -165,3 +169,48 @@ export const VideoPhoneChatContainer = styled.div `{
   overflow: hidden;
 }`;
 
+const dangerButton = `
+  color: var(--danger-color);
+  align-self: center;
+  cursor: pointer;
+  
+  :hover {
+    color: var(--white);
+  }
+  
+  :active {
+    color: var(--middle-grey-color);
+  }
+`;
+
+export const DangerColorSpan = styled.span`{
+  ${dangerButton}
+}`;
+
+export const DangerColorDiv = styled.div`{
+  ${dangerButton}
+}`;
+
+export const DangerColorTd = styled.td`{
+  ${dangerButton}
+}`;
+
+const closeButton = `
+  color: var(--white);
+  align-self: center;
+  cursor: pointer;
+  font-size: 1.25rem;
+  filter: drop-shadow(1px 1px 1px #000 );
+  
+  :hover {
+    color: var(--info);
+  }
+  
+  :active {
+    color: var(--secondary);
+  }
+`;
+
+export const CloseButtonDiv = styled.div`{
+  ${closeButton}
+}`;

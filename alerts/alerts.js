@@ -136,6 +136,23 @@ export const useConfirmAlertWithWriteCheck = () => {
   return store;
 };
 
+export const useConfirmAlertWithWriteCheckShort = () => {
+  const [, store] = useGlobal(ConfirmAlertWithWriteCheck);
+
+  const updater = (elem, callback) => store(
+    {
+      title: "Deletion of " + elem,
+      text: elem,
+      noText: "No, I've changed my mind",
+      yesText: "Yes, do it",
+      yesType: "danger",
+      yesCallback: async () => callback()
+    }
+  );
+
+  return updater;
+};
+
 export const useAlertWarning = (title) => {
 
   const [, store] = useGlobal(NotificationAlert);
