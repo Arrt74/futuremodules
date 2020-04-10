@@ -7,7 +7,7 @@ import {
 
 const WelcomeToTheJungle = (props) => {
 
-  const name = getAuthUserName(props.auth);
+  const name =  getAuthUserName(props.auth);
 
   return (
     <div>
