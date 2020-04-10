@@ -14,9 +14,10 @@ export const NavbarComponent = styled.div ` {
   height: var(--navbar-height);
   background: var(--navbar-color-transparent);
   display: flex;
-  justify-content: space-around;
+  justify-content: ${props => props.justifyContent || "space-between"} ;
   align-items:center;
   border-bottom: 1px solid var(--middle-grey-color);
+  padding: 0 var(--mainMargin);
 }`;
 
 export const FakeNavBar = styled.div `{
