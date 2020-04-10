@@ -1,7 +1,7 @@
-import React, {Fragment, useState} from "react";
+import "./alert.css";
+import React, {Fragment, useEffect, useRef, useState} from "react";
 import Button from 'react-bootstrap/Button'
 import Modal from "react-bootstrap/Modal";
-import Alert from "react-bootstrap/Alert";
 import {getRandomMovieQuote, getRandomMovieQuotePositive} from "../warningsmoviequotes/warningMovieQuotes";
 import {useGlobal} from "reactn";
 import InputGroup from "react-bootstrap/InputGroup";
@@ -17,6 +17,14 @@ export const EHAlert = () => {
   const [confirmAlertWithWriteCheck, setConfirmAlertWithWriteCheck] = useGlobal(ConfirmAlertWithWriteCheck);
   const [notificationAlert, setNotificationAlert] = useGlobal(NotificationAlert);
   const [modalConfirmWithWriteDeleteButtonEnabled, setModalConfirmWithWriteDeleteButtonEnabled] = useState(false);
+  const buttonConfirm = useRef(null);
+
+  useEffect(() => {
+    if (buttonConfirm.current) {
+      buttonConfirm.current.focus();
+      buttonConfirm.current.select();
+    }
+  }, []);
 
   if (confirmAlertWithWriteCheck) {
     return (
@@ -54,6 +62,7 @@ export const EHAlert = () => {
             {confirmAlertWithWriteCheck.noText}
           </Button>
           <Button
+            ref={buttonConfirm}
             disabled={!modalConfirmWithWriteDeleteButtonEnabled}
             variant={confirmAlertWithWriteCheck.yesType}
             onClick={() => {
@@ -83,7 +92,8 @@ export const EHAlert = () => {
         </Modal.Header>}
         <Modal.Body>{confirmAlert.text}</Modal.Body>
         <Modal.Footer>
-          <Button variant="primary" onClick={() => setConfirmAlert(null)}>
+          <Button ref={buttonConfirm}
+                  variant="primary" onClick={() => setConfirmAlert(null)}>
             {confirmAlert.noText}
           </Button>
           <Button variant={confirmAlert.yesType} onClick={confirmAlert.yesCallback}>
@@ -95,31 +105,28 @@ export const EHAlert = () => {
   }
 
   if (notificationAlert) {
-    const centered = {
-      position: 'absolute',
-      top: "50%",
-      left: "50%",
-      // marginTop: "-50px",
-      marginLeft: "-45%",
-      width: "90%",
-      zIndex: 1000000000000
-    }
-    const outlineVariant = "info";
     return (
-      <div style={centered}>
-        <Alert key={notificationAlert.title} variant={notificationAlert.alertType}
-               onClose={() => {
-                 setNotificationAlert(null).then();
-               }} dismissible>
-          {notificationAlert.title && <Alert.Heading>{notificationAlert.title}</Alert.Heading>}
-          {notificationAlert.text}
+      <Modal
+        size="lg"
+        className={notificationAlert.alertType}
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={true}
+        onClose={() => {
+          setNotificationAlert(null).then();
+        }}>
+        <Modal.Body>
+          <h3>{notificationAlert.title}</h3>
+          <br/>
+          <b>{notificationAlert.text}</b>
           <div className="mt-3">
-            <Button onClick={() => setNotificationAlert(null).then()} variant={outlineVariant}>
+            <Button ref={buttonConfirm}
+                    variant="info" onClick={() => setNotificationAlert(null)}>
               Alright...
             </Button>
           </div>
-        </Alert>
-      </div>
+        </Modal.Body>
+      </Modal>
     )
   }
 

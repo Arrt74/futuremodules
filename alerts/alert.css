@@ -1,0 +1,19 @@
+.danger .modal-content {
+    background-color: var(--danger);
+    color:white;
+}
+
+.warning .modal-content {
+    background-color: var(--warning);
+    color:white;
+}
+
+.info .modal-content {
+    background-color: var(--info);
+    color:white;
+}
+
+.primary .modal-content {
+    background-color: var(--primary);
+    color:white;
+}
