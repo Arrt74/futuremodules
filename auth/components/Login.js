@@ -62,7 +62,7 @@ const Login = (props) => {
           <Col>
             <Form onSubmit={(ev) => performLogin(ev)}>
               <br/>
-              <Form.Control name={"email"} type={"email"} placeHolder={"enter email"} onChange={e => onChange(e)}/>
+              <Form.Control name={"email"} type={"email"} placeholder={"enter email"} onChange={e => onChange(e)}/>
               <Form.Text className="text-muted">
                 We'll never share your email with anyone else.
               </Form.Text>

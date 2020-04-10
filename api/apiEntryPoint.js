@@ -45,6 +45,11 @@ export const api = async (apiEntry, func, ...args) => {
         }
       }
     } else if (isStatusCodeAny400(res.status)) {
+      // If it's a 401 set the status to null to distinguish between a status not yet initialised (undefined)
+      // and a unauthorized access
+      if ( res.status === 401 ) {
+        store(null);
+      }
       // 400s are basically errors so the store won't change but we'll spawn an error and alert
       // the reason of the error will be the res.data itself, at least we can assume so
       statusMessage = res.data;

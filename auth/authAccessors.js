@@ -1,5 +1,6 @@
 import {useGlobal} from "reactn";
 import {updateGlobal} from "../globalhelper/globalHelper";
+import {useApi} from "../api/apiEntryPoint";
 
 export const Auth = 'auth';
 
@@ -23,9 +24,13 @@ export const createAntiForgeryTokenHeaders = () => {
   return result;
 }
 
+export const useAuth = () => {
+  return useApi(Auth);
+};
+
 export const useGetAuth = () => {
   return useGlobal(Auth);
-}
+};
 
 // export const isUserAuthentiacated = (authContainer) => {
 //   const [auth, loading] = authContainer;
@@ -135,3 +140,6 @@ export const useHasUser = () => {
   const [auth] = useGlobal(Auth);
   return (auth !== undefined);
 }
+
+// HOC for ReactN utility
+export const getAuthWithGlobal = (global) => ({ auth: global.auth });
