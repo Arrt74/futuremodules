@@ -5,6 +5,33 @@ export const Body = styled.div` {
   margin: auto;
 }`;
 
+export const NavbarComponent = styled.div ` {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 50000;
+  height: var(--navbar-height);
+  background: var(--navbar-color-transparent);
+  display: flex;
+  justify-content: space-around;
+  align-items:center;
+  border-bottom: 1px solid var(--middle-grey-color);
+}`;
+
+export const FakeNavBar = styled.div `{
+  min-height: var(--navbar-height);
+}`;
+
+export const Flex = styled.div` {
+    display: flex;
+    align-items: baseline;
+}`;
+
+export const Mx1 = styled.span` {
+  margin-left: 1rem;
+}`;
+
 export const NiceSearchBar = styled.input` {
   margin: ${props => props.marginTop || "0"} auto;
   height: ${props => props.height || "38px"};
@@ -28,11 +55,6 @@ export const NiceSearchBar = styled.input` {
   :active {
     box-shadow: inset 0 0 1px 1px var(--primary-color);
   }
-}`;
-
-export const Flex = styled.div` {
-    display: flex;
-    align-items: baseline;
 }`;
 
 export const MarginBorderDiv = styled.div` {
