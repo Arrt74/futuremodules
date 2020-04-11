@@ -37,6 +37,10 @@ export const Mx1 = styled.span` {
   margin-left: 1rem;
 }`;
 
+export const My1 = styled.div` {
+  margin-bottom: 1rem;
+}`;
+
 export const NiceSearchBar = styled.input` {
   margin: ${props => props.marginTop || "0"} auto;
   height: ${props => props.height || "38px"};
