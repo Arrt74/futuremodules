@@ -133,6 +133,16 @@ export const EHAlert = () => {
   return <Fragment/>
 };
 
+export const useAlertWarning = () => {
+  const [, store] = useGlobal(NotificationAlert);
+
+  const updater = (message) => {
+    alertWarning(store, message);
+  };
+
+  return updater;
+};
+
 export const useAlert = () => {
   const [, store] = useGlobal(NotificationAlert);
   return store;
@@ -158,18 +168,6 @@ export const useConfirmAlertWithWriteCheckShort = () => {
   );
 
   return updater;
-};
-
-export const useAlertWarning = (title) => {
-
-  const [, store] = useGlobal(NotificationAlert);
-
-  store({
-    title: title,
-    text: getRandomMovieQuote(),
-    alertType: "warning"
-  }).then();
-
 };
 
 export const alertWarning = (store, title) => {
