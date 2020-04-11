@@ -18,7 +18,7 @@ export const GraphXY = ({data,config}) => {
         graph.push({ x: new Date(v.x), y: v.y });
       }
       graphData.push({
-        name: dataset.title,
+        name: dataset.yValueName,
         data: graph
       });
     }
