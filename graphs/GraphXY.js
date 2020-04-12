@@ -96,6 +96,11 @@ export const GraphXY = ({data,config}) => {
 
     chart.legend = new am4charts.Legend();
     chart.cursor = new am4charts.XYCursor();
+    let title = chart.titles.create();
+    title.text = config.title;
+    title.fontSize = 20;
+    title.fontWeight = "bold";
+    title.marginBottom = 5;
 
     return () => {
       if ( chart ) {
