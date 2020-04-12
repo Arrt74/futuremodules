@@ -11,5 +11,5 @@ export const InputMode = styled.div ` {
 
 export const ShowRenameAndDeleteLabelContainer = styled.div ` {
   width: 100%;
-  cursor: pointer;
+  cursor: text;
 }`;

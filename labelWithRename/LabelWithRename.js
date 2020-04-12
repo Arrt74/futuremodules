@@ -58,7 +58,7 @@ export const LabelWithRename = (props) => {
     ) :
     (
       <OverlayTrigger
-        overlay={ (props) => tooltipRenderFunction(props, "Click to rename")}>
+        overlay={(props) => tooltipRenderFunction(props, "Tap to rename")}>
         <LabelMode>
           {props.defaultValue}
         </LabelMode>
@@ -67,7 +67,7 @@ export const LabelWithRename = (props) => {
 
   return (
     <ShowRenameAndDeleteLabelContainer onClick={() => {
-      // Toggle function between edit and show
+      // Toggle function between show and edit
       if (!isRenaming) {
         setIsRenaming(!isRenaming)
       }
