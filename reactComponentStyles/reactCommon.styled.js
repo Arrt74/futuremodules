@@ -25,8 +25,16 @@ export const FakeNavBar = styled.div `{
 }`;
 
 export const Flex = styled.div` {
-    display: flex;
-    align-items: baseline;
+  display: flex;
+  align-items: baseline;
+  justify-content: ${props => props.justifyContent || "space-between"} ;
+}`;
+
+export const FlexVertical = styled.div` {
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  justify-content: ${props => props.justifyContent || "space-between"} ;
 }`;
 
 export const Div50 = styled.div` {
