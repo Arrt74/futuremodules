@@ -1,12 +1,12 @@
 import axios from "axios";
 import {createAntiForgeryTokenHeaders} from "../auth/authAccessors";
 
-const getCSV = async (body) => {
-  return await axios.post(`/gapi/fetch/csvkeys`, body);
+const getScripts = async (trendId) => {
+  return await axios.get(`/gapi/fetch/scripts/${trendId}`, createAntiForgeryTokenHeaders());
 };
 
-const getCSVGraphKeys = async (body) => {
-  return await axios.post(`/gapi/fetch/csvgraphkeys`, body, createAntiForgeryTokenHeaders());
+const addNewScript = async (body) => {
+  return await axios.post(`/gapi/fetch/addNewScript`, body, createAntiForgeryTokenHeaders());
 };
 
 const putScript = async (body) => {
@@ -14,7 +14,7 @@ const putScript = async (body) => {
 };
 
 export {
-  getCSV,
-  getCSVGraphKeys,
+  getScripts,
+  addNewScript,
   putScript
 }

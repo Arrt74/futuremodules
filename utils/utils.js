@@ -75,6 +75,15 @@ export const arrayExistsNotEmptyOnObject = (obj, arrayName) => {
   return obj && obj[arrayName] && Object.keys(obj[arrayName]).length > 0;
 };
 
+export const objectExistOnWithCallback = (obj, arrayName, callback) => {
+  return (obj && obj[arrayName] && callback(obj[arrayName]));
+};
+
+export const checkURLValid = (url) => {
+  const regex =  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/i;
+  return regex.exec(url) !== null;
+};
+
 export const log = (text) => {
   console.log("[Info] " + text);
 };
