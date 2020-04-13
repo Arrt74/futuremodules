@@ -30,6 +30,17 @@ export const Flex = styled.div` {
   justify-content: ${props => props.justifyContent || "space-between"} ;
 }`;
 
+export const FlexWithBorder = styled.div` {
+  display: flex;
+  align-items: baseline;
+  justify-content: ${props => props.justifyContent || "space-between"};
+  border: 1px solid var(--middle-grey-color);
+  border-radius: 5px;
+  width: ${props => props.width || "auto"};
+  margin: ${props => props.margin || "0px 10px 10px 10px"};
+  padding: ${props => props.padding || "10px"};
+}`;
+
 export const FlexVertical = styled.div` {
   display: flex;
   flex-direction: column;
@@ -45,8 +56,28 @@ export const Mx1 = styled.span` {
   margin-left: 1rem;
 }`;
 
+export const Mx05 = styled.span` {
+  margin-left: .5rem;
+}`;
+
+export const Mx025 = styled.span` {
+  margin-left: .25rem;
+}`;
+
 export const My1 = styled.div` {
   margin-bottom: 1rem;
+}`;
+
+export const My2 = styled.div` {
+  margin-bottom: 2rem;
+}`;
+
+export const My05 = styled.div` {
+  margin-bottom: 0.5rem;
+}`;
+
+export const My25 = styled.div` {
+  margin-bottom: 0.25rem;
 }`;
 
 export const NiceSearchBar = styled.input` {
@@ -225,4 +256,10 @@ const closeButton = `
 
 export const CloseButtonDiv = styled.div`{
   ${closeButton}
+}`;
+
+export const RowWithBorder = styled.div ` {
+  border-radius: 5px;
+  border: 1px solid var(--middle-grey-color);
+  padding: 5px;
 }`;
