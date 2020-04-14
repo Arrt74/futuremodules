@@ -113,6 +113,7 @@ export const EHAlert = () => {
         centered
         show={true}
         onClose={() => {
+          notificationAlert.closeCallback && notificationAlert.closeCallback();
           setNotificationAlert(null).then();
         }}>
         <Modal.Body>
@@ -121,7 +122,10 @@ export const EHAlert = () => {
           <b>{notificationAlert.text}</b>
           <div className="mt-3">
             <Button ref={buttonConfirm}
-                    variant="info" onClick={() => setNotificationAlert(null)}>
+                    variant="info" onClick={() => {
+              notificationAlert.closeCallback && notificationAlert.closeCallback();
+              setNotificationAlert(null)
+            }}>
               Alright...
             </Button>
           </div>
@@ -190,11 +194,12 @@ export const alertDangerNoMovie = (store, title) => {
 
 };
 
-export const alertSuccess = (store, title) => {
+export const alertSuccess = (store, title, closeCallback) => {
   store({
     title: title,
     text: getRandomMovieQuotePositive(),
-    alertType: "success"
+    alertType: "success",
+    closeCallback: closeCallback
   }).then();
 
 };

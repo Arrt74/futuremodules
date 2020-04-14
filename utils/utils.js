@@ -84,6 +84,10 @@ export const checkURLValid = (url) => {
   return regex.exec(url) !== null;
 };
 
+export const checkBoolDefinedAndTrue = (flag) => {
+  return flag && flag === true;
+};
+
 export const log = (text) => {
   console.log("[Info] " + text);
 };

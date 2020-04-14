@@ -1,5 +1,5 @@
 import "./reactCommon.css"
-import {Flex, Logo1TextSpanBold, Mx05, My2} from "./reactCommon.styled";
+import {Flex, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
@@ -40,6 +40,6 @@ export const RowSeparatorDouble = () => {
 
 export const RowSeparator = () => {
   return (
-    <Row><My2/></Row>
+    <Row><My1/></Row>
   )
 };

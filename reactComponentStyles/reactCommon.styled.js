@@ -239,12 +239,12 @@ export const DangerColorTd = styled.td`{
 }`;
 
 const closeButton = `
-  color: var(--white);
+  color: ${props => props.color || "white"};
   align-self: center;
   cursor: pointer;
   font-size: 1.25rem;
   filter: drop-shadow(1px 1px 1px #000 );
-  
+    
   :hover {
     color: var(--info);
   }

@@ -34,6 +34,7 @@ export const LabelWithRename = (props) => {
       <InputMode>
         <input
           ref={searchBox}
+          width={"100%"}
           defaultValue={props.defaultValue}
           type="text"
           className="rename-bar"
