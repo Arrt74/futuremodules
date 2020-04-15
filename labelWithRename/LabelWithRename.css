@@ -1,10 +1,9 @@
 .rename-bar {
     margin: 0 auto;
-    height: 35px;
+    height: inherit;
+    font-size: inherit;
     width:100%;
     vertical-align: baseline;
-    padding-left: 10px;
-    font-size: 1rem;
     border: 1px solid var(--warning);
     border-radius: 5px;
     outline: none;

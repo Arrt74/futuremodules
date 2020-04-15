@@ -26,8 +26,8 @@ export const FakeNavBar = styled.div `{
 
 export const Flex = styled.div` {
   display: flex;
-  align-items: baseline;
-  justify-content: ${props => props.justifyContent || "space-between"} ;
+  align-items: ${props => props.alignItems || "baseline"};
+  justify-content: ${props => props.justifyContent || "space-between"};
 }`;
 
 export const FlexWithBorder = styled.div` {
@@ -50,6 +50,10 @@ export const FlexVertical = styled.div` {
 
 export const Div50 = styled.div` {
     width: 50%;
+}`;
+
+export const DivHMargin = styled.div` {
+  margin: ${props => props.margin || "0 20px"};
 }`;
 
 export const Mx1 = styled.span` {
@@ -238,11 +242,11 @@ export const DangerColorTd = styled.td`{
   ${dangerButton}
 }`;
 
-const closeButton = `
+export const CloseButtonDiv = styled.div`{
   color: ${props => props.color || "white"};
+  font-size: ${props => props.fontSize || "inherit"};
   align-self: center;
   cursor: pointer;
-  font-size: 1.25rem;
   filter: drop-shadow(1px 1px 1px #000 );
     
   :hover {
@@ -252,10 +256,6 @@ const closeButton = `
   :active {
     color: var(--secondary);
   }
-`;
-
-export const CloseButtonDiv = styled.div`{
-  ${closeButton}
 }`;
 
 export const RowWithBorder = styled.div ` {

@@ -1,8 +1,6 @@
 import "./LabelWithRename.css"
-import React, {useEffect, useRef, useState} from "react";
-import {InputMode, LabelMode, ShowRenameAndDeleteLabelContainer} from "./LabelWithRename.styled";
-import OverlayTrigger from "react-bootstrap/OverlayTrigger";
-import Tooltip from "react-bootstrap/Tooltip";
+import React, {Fragment, useEffect, useRef, useState} from "react";
+import {InputRename, ShowRenameAndDeleteLabelContainer} from "./LabelWithRename.styled";
 
 export const LabelWithRename = (props) => {
 
@@ -15,55 +13,48 @@ export const LabelWithRename = (props) => {
     }
   }, [isRenaming]);
 
-  const tooltipRenderFunction = (props, text) => {
-    // NDDado: This is to avoid a bizarre show=true in DOM error from React
-    // https://github.com/styled-components/styled-components/issues/1198
-    const reProp = {
-      ...props,
-      show: "true"
-    };
-    return (
-      <Tooltip id="button-tooltip" {...reProp}>
-        {text}
-      </Tooltip>
-    );
-  };
+  // const tooltipRenderFunction = (props, text) => {
+  //   // NDDado: This is to avoid a bizarre show=true in DOM error from React
+  //   // https://github.com/styled-components/styled-components/issues/1198
+  //   const reProp = {
+  //     ...props,
+  //     show: "true"
+  //   };
+  //   return (
+  //     <Tooltip id="button-tooltip" {...reProp}>
+  //       {text}
+  //     </Tooltip>
+  //   );
+  // };
 
   const ret = isRenaming ?
     (
-      <InputMode>
-        <input
-          ref={searchBox}
-          width={"100%"}
-          defaultValue={props.defaultValue}
-          type="text"
-          className="rename-bar"
-          id="rename-bar"
-          autoComplete={"off"}
-          onKeyDown={(event) => {
-            if (event.key === "Enter") {
-              if (event.target.value.length > 0) {
-                props.updater(event.target.value);
-                setIsRenaming(false);
-              }
-            }
-            if (event.key === "Escape") {
+      <InputRename
+        ref={searchBox}
+        defaultValue={props.defaultValue}
+        type="text"
+        className="rename-bar"
+        autoComplete={"off"}
+        onKeyDown={(event) => {
+          if (event.key === "Enter") {
+            if (event.target.value.length > 0) {
+              props.updater(event.target.value);
               setIsRenaming(false);
             }
-          }}
-          onBlur={() => {
+          }
+          if (event.key === "Escape") {
             setIsRenaming(false);
-          }}
-        />
-      </InputMode>
+          }
+        }}
+        onBlur={() => {
+          setIsRenaming(false);
+        }}
+      />
     ) :
     (
-      <OverlayTrigger
-        overlay={(props) => tooltipRenderFunction(props, "Tap to rename")}>
-        <LabelMode>
-          {props.defaultValue}
-        </LabelMode>
-      </OverlayTrigger>
+      <Fragment>
+        {props.defaultValue}
+      </Fragment>
     );
 
   return (
