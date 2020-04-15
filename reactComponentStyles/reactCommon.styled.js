@@ -42,9 +42,13 @@ export const Highlighter = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
+  margin: ${props => props.margin || "inherit"};
+  padding: ${props => props.padding || "inherit"};
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
+  min-height: ${props => props.minHeight || "auto"} ;
+  height: ${props => props.height || "auto"} ;
 }`;
 
 export const FlexHighlighter = styled(Highlighter)` {
@@ -273,7 +277,7 @@ export const DangerColorTd = styled.td`{
   ${dangerButton}
 }`;
 
-export const CloseButtonDiv = styled.div`{
+export const ButtonDiv = styled.div`{
   color: ${props => props.color || "white"};
   font-size: ${props => props.fontSize || "inherit"};
   align-self: center;
