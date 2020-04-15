@@ -24,8 +24,33 @@ export const FakeNavBar = styled.div `{
   min-height: var(--navbar-height);
 }`;
 
+export const Highlighter = styled.div` {
+  cursor: pointer;  
+  :hover {
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: inset 0 0 0 1px var(--primary-color);
+  }
+  
+  :active {
+    border: 1px solid var(--primary-color);
+    border-radius: 8px;
+    box-shadow: 0 0 2px 2px var(--info);
+    background-color: var(--dark-color);
+  }
+}`;
+
 export const Flex = styled.div` {
   display: flex;
+  align-items: ${props => props.alignItems || "baseline"};
+  align-content: ${props => props.alignContent || "inherit"};
+  justify-content: ${props => props.justifyContent || "space-between"};
+}`;
+
+export const FlexHighlighter = styled(Highlighter)` {
+  display: flex;  
+  margin: ${props => props.margin || "inherit"};
+  padding: ${props => props.padding || "inherit"};
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
@@ -106,10 +131,6 @@ export const NiceSearchBar = styled.input` {
   color: var(--light-color);
   background-color: var(--dark-color);
 
-  :hover {
-    box-shadow: inset 0 0 1px 1px var(--primary-color);
-  }
-  
   :hover {
     box-shadow: inset 0 0 1px 1px var(--primary-color);
   }
