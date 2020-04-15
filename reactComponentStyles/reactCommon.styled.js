@@ -46,6 +46,8 @@ export const FlexVertical = styled.div` {
   flex-direction: column;
   align-items: baseline;
   justify-content: ${props => props.justifyContent || "space-between"} ;
+  min-height: ${props => props.minHeight || "auto"} ;
+  height: ${props => props.height || "auto"} ;
 }`;
 
 export const Div50 = styled.div` {
