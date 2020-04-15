@@ -27,6 +27,7 @@ export const FakeNavBar = styled.div `{
 export const Flex = styled.div` {
   display: flex;
   align-items: ${props => props.alignItems || "baseline"};
+  align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
 }`;
 
