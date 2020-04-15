@@ -1,5 +1,5 @@
 import "./reactCommon.css"
-import {Flex, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
+import {Flex, HR, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
@@ -10,7 +10,7 @@ const iconTitle = (icon, text) => {
       <div>
         <Logo1TextSpanBold><i className={icon}/></Logo1TextSpanBold>
       </div>
-      <Mx05></Mx05>
+      <Mx05/>
       <div>
         {text}
       </div>
@@ -35,6 +35,16 @@ export const PlusTitle = (props) => {
 export const RowSeparatorDouble = () => {
   return (
     <Row><My2/></Row>
+  )
+};
+
+export const RowSeparatorDoubleHR = () => {
+  return (
+    <Fragment>
+      <Row><My2/></Row>
+      <Row><HR></HR></Row>
+      <Row><My2/></Row>
+    </Fragment>
   )
 };
 

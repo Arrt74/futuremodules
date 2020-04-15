@@ -87,6 +87,13 @@ export const My25 = styled.div` {
   margin-bottom: 0.25rem;
 }`;
 
+export const HR = styled.div` {
+  width: 100%;
+  height: 1px;
+  border-bottom: 1px solid var(--middle-grey-color);
+}`;
+
+
 export const NiceSearchBar = styled.input` {
   margin: ${props => props.marginTop || "0"} auto;
   height: ${props => props.height || "38px"};
@@ -266,3 +273,4 @@ export const RowWithBorder = styled.div ` {
   border: 1px solid var(--middle-grey-color);
   padding: 5px;
 }`;
+

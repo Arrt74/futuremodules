@@ -88,6 +88,10 @@ export const checkBoolDefinedAndTrue = (flag) => {
   return flag && flag === true;
 };
 
+export const checkAlphaBoolDefinedAndTrue = (flag) => {
+  return flag && flag === "true";
+};
+
 export const log = (text) => {
   console.log("[Info] " + text);
 };
