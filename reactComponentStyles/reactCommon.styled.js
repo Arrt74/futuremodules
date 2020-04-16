@@ -8,13 +8,14 @@ export const Body = styled.div` {
 export const Div = styled.div` {
   width: ${props => props.width || "auto"} ;
   height: ${props => props.height || "auto"} ;
+  margin: ${props => props.margin || "inherit"};
+  padding: ${props => props.padding || "inherit"};
   max-height: ${props => props.maxHeight || "auto"} ;
   overflow-y: ${props => props.overflowY || "scroll"} ;
   overflow-x: ${props => props.overflowX || "scroll"} ;
 }`;
 
-
-export const NavbarComponent = styled.div ` {
+export const NavbarComponent = styled.div` {
   position: fixed;
   top: 0;
   left: 0;
@@ -29,7 +30,7 @@ export const NavbarComponent = styled.div ` {
   padding: 0 var(--mainMargin);
 }`;
 
-export const FakeNavBar = styled.div `{
+export const FakeNavBar = styled.div`{
   min-height: var(--navbar-height);
 }`;
 
@@ -85,10 +86,16 @@ export const FlexWithBorder = styled.div` {
 export const FlexVertical = styled.div` {
   display: flex;
   flex-direction: column;
-  align-items: baseline;
+  align-items: ${props => props.alignItems || "baseline"};
   justify-content: ${props => props.justifyContent || "space-between"} ;
   min-height: ${props => props.minHeight || "auto"} ;
   height: ${props => props.height || "auto"} ;
+}`;
+
+export const WidgetVertical = styled(FlexVertical)` {
+  height: 100%;
+  align-items: center;
+  justify-content: center;
 }`;
 
 export const Div50 = styled.div` {
@@ -251,13 +258,13 @@ export const SecondaryAltColorTextSpanBold = styled.span` {
   font-size: ${props => props.fontSize};
 }`;
 
-export const Video = styled.video `{
+export const Video = styled.video`{
   background-color: var(--dark-color-transparent);
   border: 1px solid var(--light);
   border-radius: 5px;
 }`;
 
-export const VideoPhoneChatContainer = styled.div `{
+export const VideoPhoneChatContainer = styled.div`{
   width: 100%;
   overflow: hidden;
 }`;
@@ -304,7 +311,7 @@ export const ButtonDiv = styled.div`{
   }
 }`;
 
-export const RowWithBorder = styled.div ` {
+export const RowWithBorder = styled.div` {
   border-radius: 5px;
   border: 1px solid var(--middle-grey-color);
   padding: 5px;
