@@ -52,6 +52,7 @@ export const Highlighter = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
+  font-size: ${props => props.fontSize};
   margin: ${props => props.margin || "0"};
   padding: ${props => props.padding || "0"};
   align-items: ${props => props.alignItems || "baseline"};
@@ -297,17 +298,40 @@ export const DangerColorTd = styled.td`{
 
 export const ButtonDiv = styled.div`{
   color: ${props => props.color || "white"};
+  padding: ${props => props.padding || "0"};
   font-size: ${props => props.fontSize || "inherit"};
   align-self: center;
   cursor: pointer;
   filter: drop-shadow(1px 1px 1px #000 );
     
   :hover {
-    color: var(--info);
+    color: ${props => props.hoveredColor || "var(--info)"} ;
   }
   
   :active {
     color: var(--secondary);
+  }
+}`;
+
+export const ButtonBgDiv = styled.div`{
+  color: ${props => props.color || "white"};
+  padding: ${props => props.padding || "0"};
+  font-size: ${props => props.fontSize || "inherit"};
+  align-self: center;
+  cursor: pointer;
+  border-radius: 5px;
+  border: 1px solid var(--middle-grey-color);
+  background-color: var(--dark-color-transparent);
+    
+  &:hover {
+    color: ${props => props.hoveredColor || "var(--info)"} ;
+    border: 1px solid darkgray;
+    background-color: var(--primary);
+  }
+  
+  &:active {
+    color: white;
+    background-color: var(--dark-color-transparent);
   }
 }`;
 
