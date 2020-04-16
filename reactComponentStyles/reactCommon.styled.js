@@ -52,8 +52,8 @@ export const Highlighter = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
-  margin: ${props => props.margin || "inherit"};
-  padding: ${props => props.padding || "inherit"};
+  margin: ${props => props.margin || "0"};
+  padding: ${props => props.padding || "0"};
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
@@ -63,8 +63,8 @@ export const Flex = styled.div` {
 
 export const FlexHighlighter = styled(Highlighter)` {
   display: flex;  
-  margin: ${props => props.margin || "inherit"};
-  padding: ${props => props.padding || "inherit"};
+  margin: ${props => props.margin || "0"};
+  padding: ${props => props.padding || "0"};
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};

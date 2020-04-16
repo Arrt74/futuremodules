@@ -31,7 +31,6 @@ export const GraphXY = ({graphData,config}) => {
 
       chart.yAxes.push(new am4charts.ValueAxis());
 
-      console.log("GraphData inside ", graphData);
       graphData.forEach((e,i) => {
         let series = chart.series.push(new am4charts.LineSeries());
         series.name=e.name;
