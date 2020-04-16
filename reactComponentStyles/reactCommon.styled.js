@@ -5,6 +5,15 @@ export const Body = styled.div` {
   margin: auto;
 }`;
 
+export const Div = styled.div` {
+  width: ${props => props.width || "auto"} ;
+  height: ${props => props.height || "auto"} ;
+  max-height: ${props => props.maxHeight || "auto"} ;
+  overflow-y: ${props => props.overflowY || "scroll"} ;
+  overflow-x: ${props => props.overflowX || "scroll"} ;
+}`;
+
+
 export const NavbarComponent = styled.div ` {
   position: fixed;
   top: 0;
@@ -58,6 +67,8 @@ export const FlexHighlighter = styled(Highlighter)` {
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
+  height: ${props => props.height || "auto"} ;
+  width: ${props => props.width || "auto"} ;
 }`;
 
 export const FlexWithBorder = styled.div` {
