@@ -96,6 +96,18 @@ export const FlexWithBorder = styled.div` {
   padding: ${props => props.padding || "10px"};
 }`;
 
+export const FlexToolbar = styled.div` {
+  display: flex;
+  align-items: baseline;
+  justify-content: ${props => props.justifyContent || "space-between"};
+  background-color: var(--background-color);
+  border: 1px solid var(--middle-grey-color);
+  border-radius: 5px;
+  width: ${props => props.width || "auto"};
+  margin: ${props => props.margin || "0px 10px 10px 10px"};
+  padding: ${props => props.padding || "10px"};
+}`;
+
 export const FlexVertical = styled.div` {
   display: flex;
   flex-direction: column;
