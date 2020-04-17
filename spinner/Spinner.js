@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React from "react";
+import {DivFixedCenterTopMiddle} from "../../components/dashboardProject/subcomponents/Layout/LayoutEditor.styled";
+import {Spinner} from "react-bootstrap";
 
-export default () => (
-  <Fragment>
-    <div
-      id="loader"
-      className="absolute-spinner loader loader-double is-active"
-    />
-  </Fragment>
-);
+export const SpinnerTopMiddle = (props) => {
+  return (
+    <DivFixedCenterTopMiddle>
+      <Spinner animation="grow" variant={props.variant || "warning"}/>
+    </DivFixedCenterTopMiddle>
+  )
+};
