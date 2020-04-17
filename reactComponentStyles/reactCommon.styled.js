@@ -50,6 +50,18 @@ export const Highlighter = styled.div` {
   }
 }`;
 
+export const DivFixedCenter = styled.div` {
+  position:fixed;
+  top:50%;
+  left:50%;
+}`;
+
+export const DivFixedCenterTopMiddle = styled.div` {
+  position:fixed;
+  top:25%;
+  left:50%;
+}`;
+
 export const Flex = styled.div` {
   display: flex;
   font-size: ${props => props.fontSize};

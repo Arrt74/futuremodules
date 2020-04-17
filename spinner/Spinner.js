@@ -1,6 +1,6 @@
 import React from "react";
-import {DivFixedCenterTopMiddle} from "../../components/dashboardProject/subcomponents/Layout/LayoutEditor.styled";
 import {Spinner} from "react-bootstrap";
+import {DivFixedCenterTopMiddle} from "../reactComponentStyles/reactCommon.styled";
 
 export const SpinnerTopMiddle = (props) => {
   return (
