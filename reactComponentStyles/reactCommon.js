@@ -2,7 +2,7 @@ import "./reactCommon.css"
 import {Flex, HR, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
-import {Button, Row} from "react-bootstrap";
+import {Row} from "react-bootstrap";
 
 const iconTitle = (icon, text) => {
   return (
