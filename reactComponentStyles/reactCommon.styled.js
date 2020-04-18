@@ -15,6 +15,16 @@ export const Div = styled.div` {
   overflow-x: ${props => props.overflowX || "scroll"} ;
 }`;
 
+export const DivWL = styled.div` {
+  width: ${props => props.width || "auto"} ;
+}`;
+
+export const DivWR = styled.div`{
+  display: flex;
+  width: ${props => props.width || "auto"} ;
+  justify-content: flex-end;  
+}`;
+
 export const NavbarComponent = styled.div` {
   position: fixed;
   top: 0;
