@@ -1,18 +1,19 @@
 import {LinkContainer} from "react-router-bootstrap";
 import Button from "react-bootstrap/Button";
-import {Mx1} from "../../reactComponentStyles/reactCommon.styled";
+import {Flex, Mx1} from "../../reactComponentStyles/reactCommon.styled";
 import React from "react";
+import {CustomTitle, RocketTitle} from "../../reactComponentStyles/reactCommon";
 
 export const NavbarLoginRegisterLinks = () => {
   return (
-    <div>
+    <Flex>
       <LinkContainer key={"register"} to={"/register"}>
-        <Button variant={"info"}> <i className="fas fa-user"/>{" "}Register{" "}</Button>
+        <Button variant={"outline-info"}><CustomTitle text={"Register"} icon={"user"}/></Button>
       </LinkContainer>
       <Mx1/>
       <LinkContainer key={"login"} to={"/login"}>
-        <Button variant={"primary"}> {" "}<i className="fas fa-rocket"/>{" "}Login</Button>
+        <Button variant={"outline-primary"}><RocketTitle text={"Login"}/></Button>
       </LinkContainer>
-    </div>
+    </Flex>
   )
 };

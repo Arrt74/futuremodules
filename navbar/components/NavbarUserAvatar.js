@@ -1,6 +1,7 @@
 import {Link} from "react-router-dom";
 import {getUserName, logoffFromProject, useGetAuth} from "../../auth/authAccessors";
 import React from "react";
+import {InfoTextSpanBold, Logo2TextSpan} from "../../reactComponentStyles/reactCommon.styled";
 
 export const NavbarUserAvatar = () => {
 
@@ -11,7 +12,7 @@ export const NavbarUserAvatar = () => {
     <Link to="/dashboarduser" onClick={() => {
       logoffFromProject(auth);
     }}>
-      {userName && <span><i className="fas fa-user"/>{" "}{userName}</span>}
+      {userName && <span><span><i className="fas fa-user"/></span><Logo2TextSpan>{" "}{userName}</Logo2TextSpan></span>}
     </Link>
   )
 };
