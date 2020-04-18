@@ -19,11 +19,11 @@ export const ProgressBarDiv = styled.div` {
     
     background: repeating-linear-gradient(
       -55deg,
-      var(--primary-color-light) 1px,
+      var(--info) 1px,
       var(--light-color) 2px,
-      var(--primary-color-light) 11px,
+      var(--info) 11px,
       var(--light-color) 12px,
-      var(--primary-color-light) 20px
+      var(--info) 20px
     );
   
     animation-name: ${keyFrameExampleOne};
