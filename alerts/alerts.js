@@ -147,6 +147,16 @@ export const useAlertWarning = () => {
   return updater;
 };
 
+export const useAlertSuccess = () => {
+  const [, store] = useGlobal(NotificationAlert);
+
+  const updater = (message, closeCallback) => {
+    alertSuccess(store, message, closeCallback);
+  };
+
+  return updater;
+};
+
 export const useAlert = () => {
   const [, store] = useGlobal(NotificationAlert);
   return store;
