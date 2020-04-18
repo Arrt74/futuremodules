@@ -354,8 +354,8 @@ export const ButtonBgDiv = styled.div`{
   align-self: center;
   cursor: pointer;
   border-radius: 5px;
-  border: 1px solid var(--middle-grey-color);
-  background-color: var(--dark-color-transparent);
+  border: 1px solid ${props => props.borderColor || "var(--middle-grey-color)"};
+  background-color: ${props => props.backgroundColor || "var(--dark-color-transparent)"};
     
   &:hover {
     color: ${props => props.hoveredColor || "var(--info)"} ;
