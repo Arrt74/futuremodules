@@ -1,7 +1,7 @@
 import {Link} from "react-router-dom";
 import {getUserName, logoffFromProject, useGetAuth} from "../../auth/authAccessors";
 import React from "react";
-import {InfoTextSpanBold, Logo2TextSpan} from "../../reactComponentStyles/reactCommon.styled";
+import {Logo2TextSpan} from "../../reactComponentStyles/reactCommon.styled";
 
 export const NavbarUserAvatar = () => {
 
