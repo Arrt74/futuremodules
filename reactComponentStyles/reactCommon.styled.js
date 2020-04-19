@@ -8,8 +8,8 @@ export const Body = styled.div` {
 export const Div = styled.div` {
   width: ${props => props.width || "auto"} ;
   height: ${props => props.height || "auto"} ;
-  margin: ${props => props.margin || "inherit"};
-  padding: ${props => props.padding || "inherit"};
+  margin: ${props => props.margin || "0"};
+  padding: ${props => props.padding || "0"};
   max-height: ${props => props.maxHeight || "auto"} ;
   overflow-y: ${props => props.overflowY || "scroll"} ;
   overflow-x: ${props => props.overflowX || "scroll"} ;
@@ -291,6 +291,12 @@ export const SecondaryAltColorTextSpanBold = styled.span` {
   color: var(--secondary-alt-color);
   font-weight: bold;
   font-size: ${props => props.fontSize};
+}`;
+
+export const Text = styled.span` {
+  color: ${props => props.color || "var(--light)"};
+  font-weight: ${props => props.bold ? "bold" : "none"};
+  font-size: ${props => props.fontSize || "inherit"};
 }`;
 
 export const Video = styled.video`{
