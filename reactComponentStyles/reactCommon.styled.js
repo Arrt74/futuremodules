@@ -30,6 +30,7 @@ export const NavbarComponent = styled.div` {
   top: 0;
   left: 0;
   width: 100%;
+  z-index: 2;
   height: var(--navbar-height);
   background: var(--navbar-color-transparent);
   display: flex;
