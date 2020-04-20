@@ -124,9 +124,9 @@ export const EHAlert = () => {
             <Button ref={buttonConfirm}
                     variant="info" onClick={() => {
               notificationAlert.closeCallback && notificationAlert.closeCallback();
-              setNotificationAlert(null)
+              setNotificationAlert(null).then()
             }}>
-              Alright...
+              OKEY
             </Button>
           </div>
         </Modal.Body>
