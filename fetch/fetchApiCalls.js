@@ -5,6 +5,10 @@ const getScripts = async (trendId) => {
   return await axios.get(`/gapi/fetch/scripts/${trendId}`, createAntiForgeryTokenHeaders());
 };
 
+const getSimilarScripts = async (trendId) => {
+  return await axios.get(`/gapi/fetch/similar/${trendId}`, createAntiForgeryTokenHeaders());
+};
+
 const addNewScript = async (body) => {
   return await axios.post(`/gapi/fetch/script`, body, createAntiForgeryTokenHeaders());
 };
@@ -23,6 +27,7 @@ const deleteScript = async (trendId, name) => {
 
 export {
   getScripts,
+  getSimilarScripts,
   addNewScript,
   putScript,
   patchScript,
