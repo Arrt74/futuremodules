@@ -4,6 +4,14 @@ import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
 
+export const FAIcon = ({icon}) => {
+  return (
+      <Fragment>
+        <i className={`fas fa-${icon}`}/>
+      </Fragment>
+  )
+};
+
 const iconTitle = (icon, text) => {
   return (
     <Flex justifyContent={"start"}>

@@ -10,6 +10,7 @@ export const Div = styled.div` {
   height: ${props => props.height || "auto"} ;
   margin: ${props => props.margin || "0"};
   padding: ${props => props.padding || "0"};
+  font-size: ${props => props.fontSize || "inherit"};
   max-height: ${props => props.maxHeight || "auto"} ;
   overflow-y: ${props => props.overflowY || "scroll"} ;
   overflow-x: ${props => props.overflowX || "scroll"} ;
