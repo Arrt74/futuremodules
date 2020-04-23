@@ -16,8 +16,17 @@ import {LabelWithRename} from "../labelWithRename/LabelWithRename";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
 import {getScript} from "../../modules/trends/queries";
-import {EditingUserTrend, generateUniqueNameWithArrayCheck} from "../../modules/trends/globals";
 import {checkQueryHasLoadedWith} from "../graphqlclient/query";
+
+const uniqueNamesGenerator = require('project-name-generator');
+
+export const generateUniqueNameWithArrayCheck = (arrayToCheck) => {
+  let defaultFileName = uniqueNamesGenerator().dashed;
+  while (arrayToCheck && arrayToCheck.includes(defaultFileName)) {
+    defaultFileName = uniqueNamesGenerator().dashed;
+  }
+  return defaultFileName;
+};
 
 export const FileManagementHeader = ({username, onRunCallback}) => {
 
