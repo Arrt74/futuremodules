@@ -12,7 +12,6 @@ import React, {useGlobal} from "reactn";
 import {Fragment, useEffect} from "react";
 import {alertDangerNoMovie, useAlert, useConfirmAlertWithWriteCheck} from "../alerts/alerts";
 import {useLazyQuery, useMutation} from "@apollo/react-hooks";
-import {REMOVE_SCRIPT} from "../../modules/trends/mutations";
 import {LabelWithRename} from "../labelWithRename/LabelWithRename";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
@@ -27,7 +26,7 @@ export const FileManagementHeader = ({username, onRunCallback}) => {
   const [currFileIndex, setCurrFileIndex] = useGlobal('JSONFileCurrentIndex');
   const [isJsonValid] = useGlobal('JSONValidator');
   const alertStore = useAlert();
-  const [removeScript] = useMutation(REMOVE_SCRIPT);
+  const [removeScript] = [null];//useMutation(REMOVE_SCRIPT);
   const [lazyScriptCheck, lazyScriptCheckResult] = useLazyQuery(getScript());
   const setConfirmAlert = useConfirmAlertWithWriteCheck();
 
