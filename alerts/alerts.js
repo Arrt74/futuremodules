@@ -84,7 +84,7 @@ export const EHAlert = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={true}
-        onClose={() => {
+        onHide={() => {
           setConfirmAlert(null).then();
         }}>
         {confirmAlert.title && <Modal.Header closeButton>
@@ -96,7 +96,11 @@ export const EHAlert = () => {
                   variant="primary" onClick={() => setConfirmAlert(null)}>
             {confirmAlert.noText}
           </Button>
-          <Button variant={confirmAlert.yesType} onClick={confirmAlert.yesCallback}>
+          <Button variant={confirmAlert.yesType} onClick={() => {
+              confirmAlert.yesCallback().then();
+              setConfirmAlert(null).then();
+            }
+          }>
             {confirmAlert.yesText}
           </Button>
         </Modal.Footer>
@@ -112,7 +116,7 @@ export const EHAlert = () => {
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={true}
-        onClose={() => {
+        onHide={() => {
           notificationAlert.closeCallback && notificationAlert.closeCallback();
           setNotificationAlert(null).then();
         }}>
@@ -160,6 +164,23 @@ export const useAlertSuccess = () => {
 export const useAlert = () => {
   const [, store] = useGlobal(NotificationAlert);
   return store;
+};
+
+export const useConfirmAlert = () => {
+  const [, store] = useGlobal(ConfirmAlert);
+
+  const updater = (elem, callback) => store(
+    {
+      title: "Deletion of " + elem,
+      text: elem,
+      noText: "No, I've changed my mind",
+      yesText: "Yes, do it",
+      yesType: "danger",
+      yesCallback: async () => callback()
+    }
+  );
+
+  return updater;
 };
 
 export const useConfirmAlertWithWriteCheck = () => {
