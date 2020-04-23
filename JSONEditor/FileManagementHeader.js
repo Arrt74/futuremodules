@@ -15,7 +15,6 @@ import {useLazyQuery, useMutation} from "@apollo/react-hooks";
 import {LabelWithRename} from "../labelWithRename/LabelWithRename";
 import OverlayTrigger from "react-bootstrap/OverlayTrigger";
 import Tooltip from "react-bootstrap/Tooltip";
-import {getScript} from "../../modules/trends/queries";
 import {checkQueryHasLoadedWith} from "../graphqlclient/query";
 
 const uniqueNamesGenerator = require('project-name-generator');
