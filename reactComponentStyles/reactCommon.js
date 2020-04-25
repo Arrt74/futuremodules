@@ -1,28 +1,24 @@
 import "./reactCommon.css"
-import {Flex, HR, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
+import {HR, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
 
 export const FAIcon = ({icon}) => {
   return (
-      <Fragment>
-        <i className={`fas fa-${icon}`}/>
-      </Fragment>
+    <Fragment>
+      <i className={`fas fa-${icon}`}/>
+    </Fragment>
   )
 };
 
 const iconTitle = (icon, text) => {
   return (
-    <Flex justifyContent={"start"}>
-      <div>
-        <Logo1TextSpanBold><i className={icon}/></Logo1TextSpanBold>
-      </div>
+    <Fragment>
+      <Logo1TextSpanBold><i className={icon}/></Logo1TextSpanBold>
       <Mx05/>
-      <div>
-        {text}
-      </div>
-    </Flex>
+      {text}
+    </Fragment>
   )
 };
 

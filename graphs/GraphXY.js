@@ -91,7 +91,7 @@ export const GraphXY = ({graphData,config}) => {
       title.text = config.title;
       title.fontSize = 20;
       title.fontWeight = "bold";
-      title.marginBottom = 5;
+      title.marginBottom = 15;
     }
 
     return () => {
