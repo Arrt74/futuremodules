@@ -109,14 +109,14 @@ export const FlexWithBorder = styled.div` {
 
 export const FlexToolbar = styled.div` {
   display: flex;
-  align-items: baseline;
+  align-items: ${props => props.alignItems || "baseline"};
   justify-content: ${props => props.justifyContent || "space-between"};
   background-color: var(--background-color);
   border: 1px solid var(--middle-grey-color);
   border-radius: 5px;
   width: ${props => props.width || "auto"};
-  margin: ${props => props.margin || "0px 10px 10px 10px"};
-  padding: ${props => props.padding || "10px"};
+  margin: ${props => props.margin || "0px 10px 0px 10px"};
+  padding: ${props => props.padding || "0px"};
 }`;
 
 export const FlexVertical = styled.div` {
