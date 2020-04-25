@@ -3,6 +3,7 @@ const reservedWords = [
   "register",
   "graphql",
   "gapi",
+  "media",
   "webrtc",
   "dashboarduser",
   "dashboardproject"

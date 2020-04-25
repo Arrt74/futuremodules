@@ -26,6 +26,10 @@ export const DivWR = styled.div`{
   justify-content: flex-end;  
 }`;
 
+export const Img100 = styled.img` {
+  width: 100%;
+}`;
+
 export const NavbarComponent = styled.div` {
   position: fixed;
   top: 0;
