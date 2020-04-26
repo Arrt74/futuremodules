@@ -139,16 +139,25 @@ export const FlexToolbar = styled.div` {
 export const FlexVertical = styled.div` {
   display: flex;
   flex-direction: column;
+  margin: ${props => props.margin || "0"};
+  padding: ${props => props.padding || "0"};
   align-items: ${props => props.alignItems || "baseline"};
   justify-content: ${props => props.justifyContent || "space-between"} ;
   min-height: ${props => props.minHeight || "auto"} ;
   height: ${props => props.height || "auto"} ;
+  background-color: ${props => props.backgroundColor || "none"}; 
+  line-height: ${props => props.lineHeight || "inherit"}; 
 }`;
 
 export const WidgetVertical = styled(FlexVertical)` {
   height: 100%;
   align-items: center;
   justify-content: center;
+}`;
+
+export const BadgeGroupVertical = styled(FlexVertical)` {
+  border: 1px solid ${props => props.borderColor || "var(--middle-grey-color)"};
+  border-radius: 2px;
 }`;
 
 export const Div50 = styled.div` {
