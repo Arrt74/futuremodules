@@ -26,6 +26,14 @@ export const DivWR = styled.div`{
   justify-content: flex-end;  
 }`;
 
+export const DivInlineFlex = styled.div`{
+  display: inline-flex;
+  width: ${props => props.width || "auto"} ;
+  height: ${props => props.height || "auto"} ;
+  margin: ${props => props.margin || "0"};
+  padding: ${props => props.padding || "0"};
+}`;
+
 export const Img100 = styled.img` {
   width: 100%;
 }`;
