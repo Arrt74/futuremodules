@@ -1,14 +1,22 @@
 import "./reactCommon.css"
-import {HR, Logo1TextSpanBold, Mx05, My1, My2} from "./reactCommon.styled";
+import {HR, Logo1TextSpanBold, Mx05, My1, My2, Span} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
 
-export const FAIcon = ({icon}) => {
+export const FAIcon = ({icon, variant}) => {
   return (
-    <Fragment>
+    <Span color={`var(--${variant})`}>
       <i className={`fas fa-${icon}`}/>
-    </Fragment>
+    </Span>
+  )
+};
+
+export const SpanV = ({variant, text}) => {
+  return (
+    <Span color={`var(--${variant})`}>
+      {text}
+    </Span>
   )
 };
 

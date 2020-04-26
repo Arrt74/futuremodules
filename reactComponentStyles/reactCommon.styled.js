@@ -178,8 +178,16 @@ export const My05 = styled.div` {
   margin-bottom: 0.5rem;
 }`;
 
+export const My075 = styled.div` {
+  margin-bottom: 0.75rem;
+}`;
+
 export const My25 = styled.div` {
   margin-bottom: 0.25rem;
+}`;
+
+export const Span = styled.span` {
+  color: ${props => props.color || "inherit"};
 }`;
 
 export const HR = styled.div` {
@@ -188,6 +196,9 @@ export const HR = styled.div` {
   border-bottom: 1px solid var(--middle-grey-color);
 }`;
 
+export const ULUnstyled = styled.ul `{
+  list-style: none;
+}`;
 
 export const NiceSearchBar = styled.input` {
   margin: ${props => props.marginTop || "0"} auto;
