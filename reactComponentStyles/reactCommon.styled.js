@@ -12,8 +12,8 @@ export const Div = styled.div` {
   padding: ${props => props.padding || "0"};
   font-size: ${props => props.fontSize || "inherit"};
   max-height: ${props => props.maxHeight || "auto"} ;
-  overflow-y: ${props => props.overflowY || "scroll"} ;
-  overflow-x: ${props => props.overflowX || "scroll"} ;
+  overflow-y: ${props => props.overflowY || "inherit"} ;
+  overflow-x: ${props => props.overflowX || "inherit"} ;
 }`;
 
 export const DivWL = styled.div` {
@@ -24,6 +24,11 @@ export const DivWR = styled.div`{
   display: flex;
   width: ${props => props.width || "auto"} ;
   justify-content: flex-end;  
+}`;
+
+export const DivRightBorder = styled(Div)` {
+  border-right: 1px solid ${props => props.variant ? `var(--${props.variant})` : "var(--middle-grey-color)"};
+  margin: 10px 0;
 }`;
 
 export const DivInlineFlex = styled.div`{
