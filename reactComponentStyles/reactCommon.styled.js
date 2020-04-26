@@ -205,7 +205,7 @@ export const Span = styled.span` {
 }`;
 
 export const HR = styled.div` {
-  width: 100%;
+  margin: ${props => props.margin || "0"};
   height: 1px;
   border-bottom: 1px solid var(--middle-grey-color);
 }`;
