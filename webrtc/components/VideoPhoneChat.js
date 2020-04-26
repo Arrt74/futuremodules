@@ -46,6 +46,8 @@ const VideoPhoneChat = (props) => {
 
   const makePhoneCall = () => {
     phoneCall("Dado");
+    setShowChat(true);
+    setShowVideoFeed(true);
   }
 
   const messageCallback = (msg) => {
