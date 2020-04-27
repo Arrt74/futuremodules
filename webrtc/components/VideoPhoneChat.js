@@ -1,13 +1,19 @@
 import React, {useEffect, withGlobal} from "reactn";
 import {getAuthUserName} from "../../auth/authAccessors";
-import {Button, ButtonGroup, FormControl, InputGroup, Row} from "react-bootstrap";
+import {Button, ButtonGroup, FormControl, InputGroup} from "react-bootstrap";
 import {connect, phoneCall, sendChatMessage} from "../client";
 import {useState} from "react";
-import {FlexVertical, InfoTextSpanBold, LightColorTextSpan, Video} from "../../reactComponentStyles/reactCommon.styled";
+import {
+  FlexVertical,
+  InfoTextSpanBold,
+  LightColorTextSpan,
+  My05,
+  Video
+} from "../../reactComponentStyles/reactCommon.styled";
 
 const Chat = ({currentChat}) => {
   return (
-    <Row>
+    <>
       <ul>
         {currentChat.map(elem => (<li><InfoTextSpanBold>{elem.username}</InfoTextSpanBold>: <LightColorTextSpan
           fontSize={"0.75rem"}>{elem.text}</LightColorTextSpan></li>))}
@@ -24,7 +30,7 @@ const Chat = ({currentChat}) => {
         </InputGroup.Prepend>
         <FormControl/>
       </InputGroup>
-    </Row>
+    </>
   )
 }
 
@@ -62,12 +68,10 @@ const VideoPhoneChat = (props) => {
   return (
     <FlexVertical>
       {showVideoFeed && <>
-        <Row className={"my-2"}>
-          <Video id="received_video" width={"100%"} autoPlay/>
-        </Row>
-        <Row className={"my-2"}>
-          <Video id="local_video" width={"100%"} autoPlay muted/>
-        </Row></>}
+        <Video id="received_video" width={"100%"} autoPlay/>
+        <My05/>
+        <Video id="local_video" width={"100%"} autoPlay muted/>
+      </>}
       {showChat && <Chat currentChat={currentChat}/>}
       <ButtonGroup className={"w-100"}>
         <Button variant="primary"><i className={"fas fa-comments"}/><br/>chat</Button>

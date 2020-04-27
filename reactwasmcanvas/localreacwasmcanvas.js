@@ -99,8 +99,6 @@ const checkWebGLSupport = (webGLVersion) => {
 const WasmCanvas = (props) => {
   let canvasRef = React.useRef(null);
 
-  const [, wasmStore] = props.dispatcher ? props.dispatcher : [null, null]
-
   useEffect(() => {
     loadWasmComplete(
       props.preFolder,
@@ -108,7 +106,7 @@ const WasmCanvas = (props) => {
       canvasRef.current,
       props.argumentList,
       props.mandatoryWebGLVersionSupporNumber,
-      wasmStore,
+      props.dispatcher,
     ).then()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
