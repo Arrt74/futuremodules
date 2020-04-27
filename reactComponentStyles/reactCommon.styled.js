@@ -48,7 +48,7 @@ export const NavbarComponent = styled.div` {
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 401; // Needed to bump this up because maps were taking a lot of z-indices :/
+  z-index: 1001; // Needed to bump this up because maps were taking a lot of z-indices :/
   height: var(--navbar-height);
   background: var(--navbar-color-transparent);
   display: flex;
