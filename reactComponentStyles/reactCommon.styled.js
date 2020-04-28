@@ -26,6 +26,11 @@ export const DivWR = styled.div`{
   justify-content: flex-end;  
 }`;
 
+export const DivBorder = styled(Div)` {
+  border: 1px solid ${props => props.variant ? `var(--${props.variant})` : "var(--middle-grey-color)"};
+  border-radius: 5px;
+}`;
+
 export const DivRightBorder = styled(Div)` {
   border-right: 1px solid ${props => props.variant ? `var(--${props.variant})` : "var(--middle-grey-color)"};
   margin: 10px 0;
@@ -92,6 +97,7 @@ export const DivFixedCenterTopMiddle = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
+  width: ${props => props.width || "auto"} ;
   font-size: ${props => props.fontSize};
   margin: ${props => props.margin || "0"};
   padding: ${props => props.padding || "0"};
@@ -151,6 +157,7 @@ export const FlexVertical = styled.div` {
 
 export const WidgetVertical = styled(FlexVertical)` {
   height: 100%;
+  width: 100%;
   align-items: center;
   justify-content: center;
 }`;
