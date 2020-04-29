@@ -80,6 +80,18 @@ export const objectExistOnWithCallback = (obj, arrayName, callback) => {
   return (obj && obj[arrayName] && callback(obj[arrayName]));
 };
 
+// This functions generates a new array with [Key, Value] pairs, K being the actual index of the element into the array.
+// Useful when you need to map an array but also need to access the index of that element to get a unique reference
+// (IE in a JSX map function we need a unique key, this will be the Key)
+export const mapEntries = (source, script) => {
+  const ret = [];
+  Object.entries(source).forEach( ([k, v]) => {
+      ret.push(script(k,v))
+    }
+  )
+  return ret;
+}
+
 export const checkURLValid = (url) => {
   const regex =  /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,4}\b([-a-zA-Z0-9@:%_+.~#?&/=]*)/i;
   return regex.exec(url) !== null;
