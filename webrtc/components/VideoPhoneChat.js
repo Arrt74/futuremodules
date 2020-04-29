@@ -1,7 +1,7 @@
 import React, {useEffect, withGlobal} from "reactn";
 import {getAuthUserName} from "../../auth/authAccessors";
 import {Button, ButtonGroup, FormControl, InputGroup} from "react-bootstrap";
-import {connect, phoneCall, sendChatMessage} from "../client";
+import {connect, sendChatMessage} from "../client";
 import {useState} from "react";
 import {
   FlexVertical,
@@ -38,8 +38,8 @@ const VideoPhoneChat = (props) => {
 
   const auth = props.auth;
 
-  const [showChat, setShowChat] = useState(null);
-  const [showVideoFeed, setShowVideoFeed] = useState(null);
+  const [showChat, ] = useState(null);
+  const [showVideoFeed, ] = useState(null);
   const [currentChat, setCurrentChat] = useState([]);
   const [wsconnection, setWSConnection] = useState(null);
   // const inChat = false;
@@ -51,9 +51,9 @@ const VideoPhoneChat = (props) => {
   }, [auth, wsconnection]);
 
   const makePhoneCall = () => {
-    phoneCall("Dado");
-    setShowChat(true);
-    setShowVideoFeed(true);
+    // phoneCall("Dado");
+    // setShowChat(true);
+    // setShowVideoFeed(true);
   }
 
   const messageCallback = (msg) => {
