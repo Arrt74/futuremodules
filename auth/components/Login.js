@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import {Link, Redirect} from "react-router-dom";
 
 import {api, useApi} from "../../api/apiEntryPoint";
@@ -6,6 +6,7 @@ import {loginUser} from "../authApiCalls";
 import {Auth} from "../authAccessors";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {LoginRegisterContainer} from "./auth.styled";
+import {AuthContext} from "../authContext";
 
 const Login = (props) => {
   const [formData, setFromData] = useState({
@@ -14,10 +15,11 @@ const Login = (props) => {
     project: ""
   });
 
-  const authApi = useApi(Auth);
-  const [auth] = authApi;
+  const authC = useContext(AuthContext);
 
-  if (auth) {
+  const authApi = useApi(Auth);
+
+  if (authC.user) {
     return <Redirect to="/dashboarduser"/>;
   }
 
