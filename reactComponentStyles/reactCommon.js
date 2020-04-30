@@ -1,5 +1,5 @@
 import "./reactCommon.css"
-import {HR, Logo1TextSpanBold, Mx05, My1, My2, Span} from "./reactCommon.styled";
+import {HR, Logo1TextSpanBold, Mx05, My1, My2, Span, Text} from "./reactCommon.styled";
 import React from "reactn";
 import {Fragment} from "react";
 import {Row} from "react-bootstrap";
@@ -30,10 +30,27 @@ const iconTitle = (icon, text) => {
   )
 };
 
+const customIconTitle = (icon, text, color) => {
+  return (
+    <Fragment>
+      <Text color={color}><i className={icon}/></Text>
+      <Mx05/>
+      {text}
+    </Fragment>
+  )
+};
+
 export const CustomTitle = (props) => {
   return (
     <Fragment>
       {iconTitle(`fas fa-${props.icon}`, props.text)}
+    </Fragment>)
+};
+
+export const CustomColorTitle = (props) => {
+  return (
+    <Fragment>
+      {customIconTitle(`fas fa-${props.icon}`, props.text, props.color)}
     </Fragment>)
 };
 
