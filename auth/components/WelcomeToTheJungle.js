@@ -1,6 +1,6 @@
 import React from "reactn";
 import {
-  LightColorTextSpan,
+  LightColorTextSpan, My2,
   SecondaryAltColorTextSpan
 } from "../../../futuremodules/reactComponentStyles/reactCommon.styled";
 
@@ -12,6 +12,7 @@ export const WelcomeToTheJungle = ({username}) => {
       <SecondaryAltColorTextSpan fontSize={"var(--font-size-very-large)"}>
         {username}
       </SecondaryAltColorTextSpan>
+      <My2/>
     </div>
   )
 };

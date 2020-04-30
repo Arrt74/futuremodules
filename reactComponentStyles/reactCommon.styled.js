@@ -48,6 +48,11 @@ export const Img100 = styled.img` {
   width: 100%;
 }`;
 
+export const Img100C = styled.img` {
+  width: 100%;
+  object-fit: cover;
+}`;
+
 export const NavbarComponent = styled.div` {
   position: fixed;
   top: 0;
