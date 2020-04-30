@@ -1,17 +1,13 @@
 import {Link} from "react-router-dom";
-import {getUserName, logoffFromProject, useGetAuth} from "../../auth/authAccessors";
 import React from "react";
 import {Flex, LightColorTextSpanBold, Logo1TextSpanBold, Mx025} from "../../reactComponentStyles/reactCommon.styled";
 
-export const NavbarUserAvatar = () => {
+export const NavbarUserAvatar = ({user}) => {
 
-  const auth = useGetAuth();
-  const userName = getUserName(auth);
+  const userName = user.name;
 
   return (
-    <Link to="/dashboarduser" onClick={() => {
-      logoffFromProject(auth);
-    }}>
+    <Link to="/dashboarduser">
       {userName && <Flex alignItems={"center"}>
         <div>
           <Logo1TextSpanBold

@@ -76,7 +76,7 @@ export const getUser = authContainer => {
 
 export const useGetUser = () => {
   const [auth] = useGlobal(Auth);
-  return auth ? auth.user : null;
+  return auth ? auth.user : auth;
 };
 
 export const getUserName = authContainer => {
