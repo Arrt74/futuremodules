@@ -42,6 +42,7 @@ export const DivInlineFlex = styled.div`{
   height: ${props => props.height || "auto"} ;
   margin: ${props => props.margin || "0"};
   padding: ${props => props.padding || "0"};
+  cursor:${props => props.cursor || "auto"};
 }`;
 
 export const Img100 = styled.img` {
