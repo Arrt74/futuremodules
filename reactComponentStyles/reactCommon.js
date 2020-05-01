@@ -47,6 +47,13 @@ export const CustomTitle = (props) => {
     </Fragment>)
 };
 
+export const CustomTitle2 = (props) => {
+  return (
+    <Fragment>
+      {iconTitle(`fas fa-${props.icon}`, props.children)}
+    </Fragment>)
+};
+
 export const CustomColorTitle = (props) => {
   return (
     <Fragment>
