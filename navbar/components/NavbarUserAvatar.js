@@ -17,7 +17,7 @@ export const NavbarUserAvatar = ({user}) => {
         </div>
         <Mx025/>
         <div>
-          <LightColorTextSpanBold>
+          <LightColorTextSpanBold fontSize={"var(--font-size-onemedium)"}>
             {userName}
           </LightColorTextSpanBold>
         </div>

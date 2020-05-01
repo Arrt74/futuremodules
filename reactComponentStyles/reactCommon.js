@@ -1,7 +1,7 @@
 import "./reactCommon.css"
 import {HR, Logo1TextSpanBold, Mx05, My1, My2, Span, Text} from "./reactCommon.styled";
 import React from "reactn";
-import {Fragment} from "react";
+import {Fragment, useEffect, useRef} from "react";
 import {Row} from "react-bootstrap";
 
 export const FAIcon = ({icon, variant}) => {
@@ -96,3 +96,16 @@ export const RowSeparator = () => {
     <Row><My1/></Row>
   )
 };
+
+export const useRefWithFocusOnMount = () => {
+  const focusableItem = useRef(null);
+
+  useEffect(() => {
+    if (focusableItem.current) {
+      focusableItem.current.focus();
+      focusableItem.current.select();
+    }
+  }, []);
+
+  return focusableItem;
+}
