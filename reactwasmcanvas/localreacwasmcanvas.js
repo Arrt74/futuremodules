@@ -3,6 +3,23 @@ import axios from 'axios'
 
 export const ReactWasm = 'reactWasm';
 
+export const ReactWasmCanvasContext = React.createContext( {
+  canvasContainer: null,
+  }
+);
+
+export const ReactWasmCanvasContextProvider = props => {
+
+  let canvasContainer = React.useRef(null);
+
+  return (
+    <ReactWasmCanvasContext.Provider value={{canvasContainer}}>
+      {props.children}
+    </ReactWasmCanvasContext.Provider>
+  )
+}
+
+
 export const loadWasmComplete = async (
   preFolder,
   project,
@@ -100,20 +117,21 @@ const WasmCanvas = (props) => {
   let canvasRef = React.useRef(null);
 
   useEffect(() => {
-    loadWasmComplete(
-      props.preFolder,
-      props.wasmName,
-      canvasRef.current,
-      props.argumentList,
-      props.mandatoryWebGLVersionSupporNumber,
-      props.dispatcher,
-    ).then()
+    if ( props.initialize ) {
+      loadWasmComplete(
+        props.preFolder,
+        props.wasmName,
+        canvasRef.current,
+        props.argumentList,
+        props.mandatoryWebGLVersionSupporNumber,
+        props.dispatcher,
+      ).then()
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [props.initialize])
 
 
   const rect = props.canvasContainer ? props.canvasContainer.getBoundingClientRect() : props.initialRect;
-  const visibility = props.canvasContainer ? "visible" : props.initialVisibility;
 
   const canvasSizeX = rect.width.toString() + 'px'
   const canvasSizeY = rect.height.toString() + 'px'
@@ -129,7 +147,7 @@ const WasmCanvas = (props) => {
   const border = props.border ? props.border : 'auto'
 
   const canvasStyle = {
-    visibility: visibility,
+    visibility: props.visibility || "visible",
     width: canvasSizeX,
     height: canvasSizeY,
     margin: canvasMargin,

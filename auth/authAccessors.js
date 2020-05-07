@@ -4,8 +4,8 @@ import {useApi} from "../api/apiEntryPoint";
 
 export const Auth = 'auth';
 
-export const createAntiForgeryTokenHeaders = () => {
-  const result = {};
+export const insertAntiForgeryTokenHeaders = (headers) => {
+  const result = headers || {headers: {}};
   if (document.cookie) {
     const regexSearch = `(?:(?:^|.*;\\s*)${process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE}\\s*=\\s*([^;]*).*$)|^.*$`;
     const regex = RegExp(regexSearch, "i");
@@ -15,7 +15,6 @@ export const createAntiForgeryTokenHeaders = () => {
         const endAft = cookieContent.indexOf(".", 4);
         if (endAft !== -1) {
           const aft = cookieContent.substr(4, endAft - 4);
-          result["headers"] = {};
           result["headers"][process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE] = aft;
         }
       }

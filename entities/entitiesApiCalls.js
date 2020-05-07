@@ -1,12 +1,14 @@
 // Add post
 import axios from "axios";
 import {octetStreamHeader} from "../api/apiEntryPoint";
+import {insertAntiForgeryTokenHeaders} from "../auth/authAccessors";
 
-export const addEntity = async (fileName, fileData, group)  => {
+export const addEntity = async (group, fileName, fileData)  => {
   const urlEnc = encodeURIComponent(fileName);
-  await axios.post("/api/fs/entity_to_elaborate/" + group + "/" + urlEnc,
+  const headers = insertAntiForgeryTokenHeaders(octetStreamHeader());
+  return await axios.post("/gapi/fs/" + group + "/" + urlEnc,
     fileData,
-    octetStreamHeader()
+    headers
   );
 };
 

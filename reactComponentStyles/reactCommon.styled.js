@@ -110,6 +110,7 @@ export const Flex = styled.div` {
   align-items: ${props => props.alignItems || "baseline"};
   align-content: ${props => props.alignContent || "inherit"};
   justify-content: ${props => props.justifyContent || "space-between"};
+  justify-items: ${props => props.justifyItems || "space-between"};
   min-height: ${props => props.minHeight || "auto"} ;
   height: ${props => props.height || "auto"} ;
 }`;
@@ -134,6 +135,28 @@ export const FlexWithBorder = styled.div` {
   width: ${props => props.width || "auto"};
   margin: ${props => props.margin || "0px 10px 10px 10px"};
   padding: ${props => props.padding || "10px"};
+}`;
+
+export const FlexDragAndDrop = styled(Flex)` {
+  border: 3px dashed var(--middle-grey-color);
+  border-radius: 10px;
+  background-color: var(--dark-color-transparent);
+  cursor: pointer;
+
+  &:drop {
+    background-color: var(--primary);
+  }
+  
+  &:hover {
+    border: 3px dashed var(--info);
+    color: var(--warning)
+  }
+  
+  &:active {
+    color: white;
+    background-color: var(--dark-color-transparent);
+  }
+
 }`;
 
 export const FlexToolbar = styled.div` {
@@ -405,6 +428,8 @@ export const ButtonDiv = styled.div`{
 }`;
 
 export const ButtonBgDiv = styled.div`{
+  width: ${props => props.width || "auto"} ;
+  height: ${props => props.height || "auto"} ;
   color: ${props => props.color || "white"};
   padding: ${props => props.padding || "0"};
   font-size: ${props => props.fontSize || "inherit"};
@@ -432,3 +457,14 @@ export const RowWithBorder = styled.div` {
   padding: 5px;
 }`;
 
+const mainPadding = "15px";
+
+export const ContainerSectionShadowed = styled.div `{
+  padding: 10px ${mainPadding};
+  min-height: 640px;
+  border-radius: 5px;
+  background-image: linear-gradient(var(--dark-color), var(--dark-color-transparent-very) );
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 4px 10px 0 rgba(0, 0, 0, 0.99);
+  overflow: hidden;
+  margin-top: 20px;
+}`

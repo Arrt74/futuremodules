@@ -1,11 +1,10 @@
 import axios from "axios";
 import {isStatusCodeSuccessful} from "../api/apiStatus";
 import {wscClose, wscConnect} from "./websockets";
-import {createAntiForgeryTokenHeaders} from "./authAccessors";
+import {insertAntiForgeryTokenHeaders} from "./authAccessors";
 
 const loadUser = async () => {
-  const headers = createAntiForgeryTokenHeaders();
-  return await axios.get(`/gapi/user`, headers);
+  return await axios.get(`/gapi/user`, insertAntiForgeryTokenHeaders());
 }
 
 const getTokenResponse = async (res, websocketMessageHandler) => {
@@ -29,15 +28,13 @@ const registerUser = async (name, email, password, websocketMessageHandler) => {
 };
 
 const logoutUser = async () => {
-  const headers = createAntiForgeryTokenHeaders();
-  const res = await axios.put(`/gapi/cleanToken`, {}, headers);
+  const res = await axios.put(`/gapi/cleanToken`, {},  insertAntiForgeryTokenHeaders());
   localStorage.removeItem("token");
   wscClose();
   return res;
 };
 
 export {
-  createAntiForgeryTokenHeaders,
   loadUser,
   loginUser,
   registerUser,
