@@ -8,12 +8,14 @@ import InputGroup from "react-bootstrap/InputGroup";
 import FormControl from "react-bootstrap/FormControl";
 
 export const ConfirmAlert = 'confirmAlert';
+export const MultiChoiceAlert = 'multiChoiceAlert';
 export const NotificationAlert = 'notificationAlert';
 export const ConfirmAlertWithWriteCheck = 'ConfirmAlertWithWriteCheck';
 
 export const EHAlert = () => {
 
   const [confirmAlert, setConfirmAlert] = useGlobal(ConfirmAlert);
+  const [multiChoiceAlert, setMultiChoiceAlert] = useGlobal(MultiChoiceAlert);
   const [confirmAlertWithWriteCheck, setConfirmAlertWithWriteCheck] = useGlobal(ConfirmAlertWithWriteCheck);
   const [notificationAlert, setNotificationAlert] = useGlobal(NotificationAlert);
   const [modalConfirmWithWriteDeleteButtonEnabled, setModalConfirmWithWriteDeleteButtonEnabled] = useState(false);
@@ -108,6 +110,37 @@ export const EHAlert = () => {
     )
   }
 
+  if (multiChoiceAlert) {
+    return (
+      <Modal
+        size="lg"
+        aria-labelledby="contained-modal-title-vcenter"
+        centered
+        show={true}
+        onHide={() => {
+          setMultiChoiceAlert(null).then();
+        }}>
+        {multiChoiceAlert.title && <Modal.Header closeButton>
+          <Modal.Title>{multiChoiceAlert.title}</Modal.Title>
+        </Modal.Header>}
+        <Modal.Body>{multiChoiceAlert.text}</Modal.Body>
+        <Modal.Footer>
+          {multiChoiceAlert.buttons.map( elem => {
+            return (
+              <Button variant="primary"
+                      onClick={() => {
+                        multiChoiceAlert.yesCallback(elem).then();
+                        setConfirmAlert(null).then();
+                      }}>
+                {elem}
+              </Button>
+            )
+          })}
+        </Modal.Footer>
+      </Modal>
+    )
+  }
+
   if (notificationAlert) {
     return (
       <Modal
@@ -177,6 +210,21 @@ export const useConfirmAlert = () => {
       yesText: "Yes, do it",
       yesType: "danger",
       yesCallback: async () => callback()
+    }
+  );
+
+  return updater;
+};
+
+export const useMultiChoiceAlert = () => {
+  const [, store] = useGlobal(MultiChoiceAlert);
+
+  const updater = (title, text, buttons, callback) => store(
+    {
+      title,
+      text,
+      buttons,
+      yesCallback: async (button) => callback(button)
     }
   );
 

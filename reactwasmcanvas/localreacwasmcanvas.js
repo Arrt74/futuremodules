@@ -1,25 +1,89 @@
 import React, {useEffect} from 'reactn'
 import axios from 'axios'
-import {useContext, useState} from "react";
+import {useContext, useReducer} from "react";
 
-export const ReactWasmCanvasContext = React.createContext( {
-  canvasProps: {},
-  setCanvasProps: ()=>{}
+export const wasmSetCanvasResize = 'wasmSetCanvasResize';
+export const wasmSetCanvasVisibility = 'wasmSetCanvasVisibility';
+export const wasmSetCanvasRect = 'wasmSetCanvasRect';
+export const wasmAddScriptLine = 'wasmAddScriptLine';
+export const wasmExecuteQueuedScripts = 'wasmExecuteQueuedScripts';
+
+export const ReactWasmCanvasContext = React.createContext({
+    dispatch: () => {
+    },
+    addScriptLine: (scriptLines, line) => {
+      if (window.Module) {
+        window.Module.addScriptLine(line);
+      } else {
+        scriptLines.push(line);
+      }
+    }
   }
 );
 
+const reactWasmCanvasInitialState = {
+  visible: "hidden",
+  resize: true,
+  rect: {
+    left: "0",
+    top: "0",
+    width: 720,
+    height: 480
+  },
+  scriptLines: []
+};
+
+const reactWasmCanvasStateReducer = (state, action) => {
+  switch (action[0]) {
+    case wasmSetCanvasVisibility:
+      return {
+        ...state,
+        visible: action[1]
+      };
+    case wasmSetCanvasResize:
+      return {
+        ...state,
+        resize: action[1]
+      };
+    case wasmSetCanvasRect:
+      return {
+        ...state,
+        rect: action[1],
+        resize: false
+      };
+    case wasmAddScriptLine:
+      if (window.Module) {
+        window.Module.addScriptLine(action[1]);
+        return state;
+      }
+      const newLines = [...state.scriptLines, action[1]];
+      return {
+        ...state,
+        scriptLines: newLines
+      };
+
+    case wasmExecuteQueuedScripts:
+      if (window.Module) {
+        for (const line of state.scriptLines) {
+          window.Module.addScriptLine(line);
+        }
+      }
+      return {
+        ...state,
+        scriptLines: []
+      };
+
+    default:
+      throw new Error("dashBoardManager reducer is handling an invalid action: " + JSON.stringify(action));
+  }
+}
+
 export const ReactWasmCanvasContextProvider = props => {
 
-  const [canvasProps, setCanvasProps] = useState({
-    canvasVisible: "hidden",
-    canvasLeft: "0",
-    canvasTop: "0",
-    canvasWidth: 720,
-    canvasHeight: 480
-  });
+  const [state, dispatch] = useReducer(reactWasmCanvasStateReducer, reactWasmCanvasInitialState);
 
   return (
-    <ReactWasmCanvasContext.Provider value={{canvasProps, setCanvasProps}}>
+    <ReactWasmCanvasContext.Provider value={{state, dispatch}}>
       {props.children}
     </ReactWasmCanvasContext.Provider>
   )
@@ -28,29 +92,18 @@ export const ReactWasmCanvasContextProvider = props => {
 export const useWasmContext = (visible) => {
   let canvasContainer = React.useRef(null);
   const reactWasmCanvasContext = useContext(ReactWasmCanvasContext);
-  const setCanvasProps = reactWasmCanvasContext.setCanvasProps;
+  const dispatch = reactWasmCanvasContext.dispatch;
+  const resize = reactWasmCanvasContext.state.resize;
 
-  useEffect( ()=> {
-    setCanvasProps( state => {
-      const zeroRect= {
-        top: state.canvasTop,
-        left: state.canvasLeft,
-        width: state.canvasWidth,
-        height: state.canvasHeight,
-      };
-      const rect = canvasContainer.current ? canvasContainer.current.getBoundingClientRect() : zeroRect;
-      console.log("Canvas Rect: ", rect);
-      return {...state,
-        canvasVisible: visible ? "visible" : "hidden",
-        canvasTop: rect.top,
-        canvasLeft: rect.left,
-        canvasWidth: rect.width,
-        canvasHeight: rect.height,
-      };
-    });
-  }, [canvasContainer, visible, setCanvasProps]);
+  useEffect(() => {
+    dispatch([wasmSetCanvasVisibility, visible ? "visible" : "hidden"]);
+    if (canvasContainer.current && resize) {
+      const rect = canvasContainer.current.getBoundingClientRect();
+      dispatch([wasmSetCanvasRect, rect]);
+    }
+  }, [canvasContainer, visible, resize, dispatch]);
 
-  return canvasContainer;
+  return {canvasContainer, dispatch};
 }
 
 export const loadWasmComplete = async (
@@ -60,16 +113,6 @@ export const loadWasmComplete = async (
   mandatoryWebGLVersionSupportNumber,
   dispatch
 ) => {
-
-  if ( window.wasmScript ) {
-    console.log("Already there thanks");
-
-    if (dispatch) dispatch({
-      consoleOutput: ["WASM initiated successfully"]
-    });
-
-    return;
-  }
 
   try {
     console.log("Wasm Initialization starting");
@@ -107,12 +150,17 @@ export const loadWasmComplete = async (
     return null
   }
 
+  window.addEventListener("resize", () => {
+    dispatch([wasmSetCanvasResize, true]);
+    // console.log("Window Resize: ", window.innerWidth, window.innerWidth);
+  });
+
   window.Module = {
     doNotCaptureKeyboard: true,
     arguments: argumentList,
     print: text => {
       console.log('[WASM] ' + text)
-      if (dispatch) dispatch(wasmAddConsoleTextInternal(text))
+      wasmAddConsoleTextInternal(text)
     },
     printErr: text => {
       console.log('[WASM-ERROR] ' + text)
@@ -120,14 +168,13 @@ export const loadWasmComplete = async (
     canvas: canvasRef,
     onRuntimeInitialized: () => {
       console.log("WASM runtime initialized");
+      dispatch([wasmExecuteQueuedScripts, '']);
+      // window.Module.addScriptLine(`f9.loadHouse("5ea45ffeb06b0cfc7488ec45")`)
     },
     instantiateWasm: (imports, successCallback) => {
       WebAssembly.instantiate(window.wasmBinary, imports)
         .then(function (output) {
           console.log("WASM initiated successfully");
-          if (dispatch) dispatch({
-            consoleOutput: ["WASM initiated successfully"]
-          });
           successCallback(output.instance)
         })
         .catch(function (e) {
@@ -159,26 +206,28 @@ const checkWebGLSupport = (webGLVersion) => {
 
 const WasmCanvas = (props) => {
   let canvasRef = React.useRef(null);
-  const wasmState = useContext(ReactWasmCanvasContext).canvasProps;
+  const wasmContext = useContext(ReactWasmCanvasContext);
+  const canvasRect = wasmContext.state.rect;
+  const canvasVisibility = wasmContext.state.visible;
 
   useEffect(() => {
-      loadWasmComplete(
-        props.wasmName,
-        canvasRef.current,
-        props.argumentList,
-        props.mandatoryWebGLVersionSupporNumber,
-        props.dispatcher,
-      ).then();
+    loadWasmComplete(
+      props.wasmName,
+      canvasRef.current,
+      props.argumentList,
+      props.mandatoryWebGLVersionSupporNumber,
+      wasmContext.dispatch,
+    ).then();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, []);
 
-  const canvasSizeX = wasmState.canvasWidth.toString() + "px";
-  const canvasSizeY = wasmState.canvasHeight.toString() + "px";
+  const canvasSizeX = canvasRect.width.toString() + "px";
+  const canvasSizeY = canvasRect.height.toString() + "px";
 
   const canvasClientSizeX =
-    (wasmState.canvasWidth * (window.devicePixelRatio || 1)).toString() + 'px'
+    (canvasRect.width * (window.devicePixelRatio || 1)).toString() + 'px'
   const canvasClientSizeY =
-    (wasmState.canvasHeight * (window.devicePixelRatio || 1)).toString() + 'px'
+    (canvasRect.height * (window.devicePixelRatio || 1)).toString() + 'px'
 
   const canvasPadding = props.padding ? props.padding : '0px'
   const canvasMargin = props.margin ? props.margin : '0px'
@@ -187,11 +236,11 @@ const WasmCanvas = (props) => {
 
   const canvasStyle = {
     position: "absolute",
-    visibility: wasmState.canvasVisible,
+    visibility: canvasVisibility,
     width: canvasSizeX,
     height: canvasSizeY,
-    left: wasmState.canvasLeft,
-    top: wasmState.canvasTop,
+    left: canvasRect.left,
+    top: canvasRect.top,
     margin: canvasMargin,
     padding: canvasPadding,
     borderRadius: canvasRadius,

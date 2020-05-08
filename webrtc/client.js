@@ -69,8 +69,8 @@ export function connect(username, messageCallback, watchCallback) {
 
   connection.onmessage = function (evt) {
     var msg = JSON.parse(evt.data);
-    log("Message received: ");
-    console.dir(msg);
+    // log("Message received: ");
+    // console.dir(msg);
     var time = new Date(msg.date);
     var timeStr = time.toLocaleTimeString();
 
@@ -121,8 +121,8 @@ export function connect(username, messageCallback, watchCallback) {
       // Unknown message; output to console for debugging.
 
       default:
-        logError("Unknown message received:");
-        logError(msg);
+        // logError("Unknown message received:");
+        // logError(msg);
     }
 
     // If there's text to insert into the chat buffer, do so now, then
