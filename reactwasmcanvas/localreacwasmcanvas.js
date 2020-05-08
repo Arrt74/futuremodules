@@ -169,7 +169,6 @@ export const loadWasmComplete = async (
     onRuntimeInitialized: () => {
       console.log("WASM runtime initialized");
       dispatch([wasmExecuteQueuedScripts, '']);
-      // window.Module.addScriptLine(`f9.loadHouse("5ea45ffeb06b0cfc7488ec45")`)
     },
     instantiateWasm: (imports, successCallback) => {
       WebAssembly.instantiate(window.wasmBinary, imports)
