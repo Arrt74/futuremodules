@@ -130,7 +130,7 @@ export const EHAlert = () => {
               <Button variant="primary"
                       onClick={() => {
                         multiChoiceAlert.yesCallback(elem).then();
-                        setConfirmAlert(null).then();
+                        setMultiChoiceAlert(null).then();
                       }}>
                 {elem}
               </Button>
@@ -179,6 +179,16 @@ export const useAlertWarning = () => {
 
   const updater = (message) => {
     alertWarning(store, message);
+  };
+
+  return updater;
+};
+
+export const useAlertDangerNoMovie = () => {
+  const [, store] = useGlobal(NotificationAlert);
+
+  const updater = (message) => {
+    alertDangerNoMovie(store, message);
   };
 
   return updater;
