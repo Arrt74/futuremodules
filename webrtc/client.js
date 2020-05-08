@@ -53,7 +53,7 @@ export const phoneCall = (invitedUser) => {
 
 // Open and configure the connection to the WebSocket server.
 
-export function connect(username, messageCallback) {
+export function connect(username, messageCallback, watchCallback) {
 
   console.log("Setting first username: ", username);
   myUsername = username;
@@ -85,6 +85,12 @@ export function connect(username, messageCallback) {
           timestamp: timeStr,
           username: msg.name,
           text: msg.text
+        });
+        break;
+
+      case "watchmessage":
+        watchCallback({
+          data: msg.data
         });
         break;
 

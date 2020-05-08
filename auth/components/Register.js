@@ -6,6 +6,7 @@ import {alertWarning, useAlert} from "../../alerts/alerts";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {LoginRegisterContainer} from "./auth.styled";
 import {AnimFadeSection} from "../../reactComponentStyles/reactCommon.animations";
+import {useWasmContext} from "../../reactwasmcanvas/localreacwasmcanvas";
 
 const Register = (props) => {
   const [formData, setFromData] = useState({
@@ -14,6 +15,7 @@ const Register = (props) => {
     password: "",
     password2: ""
   });
+  useWasmContext(false);
   const authApi = useApi('auth');
   const [auth] = authApi;
   const alert = useAlert();

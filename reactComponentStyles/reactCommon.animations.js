@@ -4,13 +4,25 @@ import React from "react";
 export const AnimFadeSection = (props) => {
   return (
     <motion.section
+      initial={{opacity: 0}}
+      animate={{opacity: 1}}
+      exit={{opacity: 0}}
+      transition={{duration: 0.25}}>
+      {props.children}
+    </motion.section>
+    )
+}
+
+export const AnimFadeSectionWithSlightScale = (props) => {
+  return (
+    <motion.section
       initial={{opacity: 0, scale:0.99}}
       animate={{opacity: 1, scale:1.0}}
       exit={{opacity: 0}}
       transition={{duration: 0.25}}>
       {props.children}
     </motion.section>
-    )
+  )
 }
 
 export const AnimSlideIn = (props) => {

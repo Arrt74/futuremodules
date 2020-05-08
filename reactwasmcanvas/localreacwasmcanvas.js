@@ -1,34 +1,79 @@
 import React, {useEffect} from 'reactn'
 import axios from 'axios'
-
-export const ReactWasm = 'reactWasm';
+import {useContext, useState} from "react";
 
 export const ReactWasmCanvasContext = React.createContext( {
-  canvasContainer: null,
+  canvasProps: {},
+  setCanvasProps: ()=>{}
   }
 );
 
 export const ReactWasmCanvasContextProvider = props => {
 
-  let canvasContainer = React.useRef(null);
+  const [canvasProps, setCanvasProps] = useState({
+    canvasVisible: "hidden",
+    canvasLeft: "0",
+    canvasTop: "0",
+    canvasWidth: 720,
+    canvasHeight: 480
+  });
 
   return (
-    <ReactWasmCanvasContext.Provider value={{canvasContainer}}>
+    <ReactWasmCanvasContext.Provider value={{canvasProps, setCanvasProps}}>
       {props.children}
     </ReactWasmCanvasContext.Provider>
   )
 }
 
+export const useWasmContext = (visible) => {
+  let canvasContainer = React.useRef(null);
+  const reactWasmCanvasContext = useContext(ReactWasmCanvasContext);
+  const setCanvasProps = reactWasmCanvasContext.setCanvasProps;
+
+  useEffect( ()=> {
+    setCanvasProps( state => {
+      const zeroRect= {
+        top: state.canvasTop,
+        left: state.canvasLeft,
+        width: state.canvasWidth,
+        height: state.canvasHeight,
+      };
+      const rect = canvasContainer.current ? canvasContainer.current.getBoundingClientRect() : zeroRect;
+      console.log("Canvas Rect: ", rect);
+      return {...state,
+        canvasVisible: visible ? "visible" : "hidden",
+        canvasTop: rect.top,
+        canvasLeft: rect.left,
+        canvasWidth: rect.width,
+        canvasHeight: rect.height,
+      };
+    });
+  }, [canvasContainer, visible, setCanvasProps]);
+
+  return canvasContainer;
+}
 
 export const loadWasmComplete = async (
-  preFolder,
   project,
   canvasRef,
   argumentList,
   mandatoryWebGLVersionSupportNumber,
   dispatch
 ) => {
+
+  if ( window.wasmScript ) {
+    console.log("Already there thanks");
+
+    if (dispatch) dispatch({
+      consoleOutput: ["WASM initiated successfully"]
+    });
+
+    return;
+  }
+
   try {
+    console.log("Wasm Initialization starting");
+
     if (!checkWasmSupport()) {
       throw new Error('Web assembly not supported')
     }
@@ -38,7 +83,6 @@ export const loadWasmComplete = async (
     }
 
     let wasmAxios = axios.create()
-    wasmAxios.defaults.baseURL = preFolder || ''
 
     let downloadConfig = {
       url: project + '.wasm',
@@ -115,31 +159,26 @@ const checkWebGLSupport = (webGLVersion) => {
 
 const WasmCanvas = (props) => {
   let canvasRef = React.useRef(null);
+  const wasmState = useContext(ReactWasmCanvasContext).canvasProps;
 
   useEffect(() => {
-    if ( props.initialize ) {
       loadWasmComplete(
-        props.preFolder,
         props.wasmName,
         canvasRef.current,
         props.argumentList,
         props.mandatoryWebGLVersionSupporNumber,
         props.dispatcher,
-      ).then()
-    }
+      ).then();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.initialize])
+  }, [])
 
-
-  const rect = props.canvasContainer ? props.canvasContainer.getBoundingClientRect() : props.initialRect;
-
-  const canvasSizeX = rect.width.toString() + 'px'
-  const canvasSizeY = rect.height.toString() + 'px'
+  const canvasSizeX = wasmState.canvasWidth.toString() + "px";
+  const canvasSizeY = wasmState.canvasHeight.toString() + "px";
 
   const canvasClientSizeX =
-    (rect.width * (window.devicePixelRatio || 1)).toString() + 'px'
+    (wasmState.canvasWidth * (window.devicePixelRatio || 1)).toString() + 'px'
   const canvasClientSizeY =
-    (rect.height * (window.devicePixelRatio || 1)).toString() + 'px'
+    (wasmState.canvasHeight * (window.devicePixelRatio || 1)).toString() + 'px'
 
   const canvasPadding = props.padding ? props.padding : '0px'
   const canvasMargin = props.margin ? props.margin : '0px'
@@ -147,9 +186,12 @@ const WasmCanvas = (props) => {
   const border = props.border ? props.border : 'auto'
 
   const canvasStyle = {
-    visibility: props.visibility || "visible",
+    position: "absolute",
+    visibility: wasmState.canvasVisible,
     width: canvasSizeX,
     height: canvasSizeY,
+    left: wasmState.canvasLeft,
+    top: wasmState.canvasTop,
     margin: canvasMargin,
     padding: canvasPadding,
     borderRadius: canvasRadius,

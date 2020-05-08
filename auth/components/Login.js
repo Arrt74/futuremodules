@@ -8,6 +8,7 @@ import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {LoginRegisterContainer} from "./auth.styled";
 import {AuthContext} from "../authContext";
 import {AnimFadeSection} from "../../reactComponentStyles/reactCommon.animations";
+import {useWasmContext} from "../../reactwasmcanvas/localreacwasmcanvas";
 
 const Login = (props) => {
   const [formData, setFromData] = useState({
@@ -18,6 +19,7 @@ const Login = (props) => {
 
   const authC = useContext(AuthContext);
   const authApi = useApi(Auth);
+  useWasmContext(false);
 
   const {email, password} = formData;
   const onChange = e =>
