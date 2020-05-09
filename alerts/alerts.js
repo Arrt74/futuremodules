@@ -39,7 +39,9 @@ export const EHAlert = () => {
         {confirmAlertWithWriteCheck.title && <Modal.Header>
           <Modal.Title><b>{confirmAlertWithWriteCheck.title}</b></Modal.Title>
         </Modal.Header>}
-        <Modal.Body>
+        <Modal.Body
+          className={"modal-open"}
+        >
           <div>
             To delete <b>{confirmAlertWithWriteCheck.text}</b> type it below to <b>confirm</b> it.<br/><br/>
             <b>Warning</b>: once it's gone... It's gone!
@@ -92,7 +94,9 @@ export const EHAlert = () => {
         {confirmAlert.title && <Modal.Header closeButton>
           <Modal.Title>{confirmAlert.title}</Modal.Title>
         </Modal.Header>}
-        <Modal.Body>{confirmAlert.text}</Modal.Body>
+        <Modal.Body
+          className={"modal-open"}
+        >{confirmAlert.text}</Modal.Body>
         <Modal.Footer>
           <Button ref={buttonConfirm}
                   variant="primary" onClick={() => setConfirmAlert(null)}>
@@ -114,6 +118,7 @@ export const EHAlert = () => {
     return (
       <Modal
         size="lg"
+        className={"secondary"}
         aria-labelledby="contained-modal-title-vcenter"
         centered
         show={true}
@@ -123,11 +128,13 @@ export const EHAlert = () => {
         {multiChoiceAlert.title && <Modal.Header closeButton>
           <Modal.Title>{multiChoiceAlert.title}</Modal.Title>
         </Modal.Header>}
-        <Modal.Body>{multiChoiceAlert.text}</Modal.Body>
+        <Modal.Body
+          className={"modal-open"}
+        >{multiChoiceAlert.text}</Modal.Body>
         <Modal.Footer>
           {multiChoiceAlert.buttons.map( elem => {
             return (
-              <Button variant="primary"
+              <Button variant="info"
                       onClick={() => {
                         multiChoiceAlert.yesCallback(elem).then();
                         setMultiChoiceAlert(null).then();
@@ -153,7 +160,9 @@ export const EHAlert = () => {
           notificationAlert.closeCallback && notificationAlert.closeCallback();
           setNotificationAlert(null).then();
         }}>
-        <Modal.Body>
+        <Modal.Body
+          className={"modal-open"}
+        >
           <h3>{notificationAlert.title}</h3>
           <br/>
           <b>{notificationAlert.text}</b>
