@@ -54,6 +54,12 @@ export const Img100C = styled.img` {
   object-fit: cover;
 }`;
 
+export const ImgCover = styled.img` {
+  object-fit: contain;
+  width: 100%;
+  height: ${props => props.height || "auto"} ;
+}`;
+
 export const NavbarComponent = styled.div` {
   position: fixed;
   top: 0;
