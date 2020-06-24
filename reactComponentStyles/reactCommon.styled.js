@@ -474,3 +474,10 @@ export const ContainerSectionShadowed = styled.div `{
   overflow: hidden;
   margin-top: 20px;
 }`
+
+export const ContainerSectionShadowedInfinite = styled.div `{
+  padding: 10px ${mainPadding};
+  min-height: 640px;
+  background-image: linear-gradient(var(--dark-color), var(--dark-color-transparent-very) );
+  margin-top: 20px;
+}`
