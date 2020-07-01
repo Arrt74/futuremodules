@@ -11,3 +11,11 @@ export const NavbarUserContainer = styled.div`{
   width: ${navbarJustifyEndsWidth};
   justify-content: flex-end;  
 }`;
+
+export const NavbarTaglineText = styled.span` {
+  margin-top: 5px;
+  color: var(--light);
+  font-size: var(--font-size-big);
+  font-weight: bold;
+  font-family: "Pompiere", cursive;
+}`;
