@@ -52,6 +52,11 @@ export const sanitizeURLParams = urlParams => {
   return regex.exec(urlParams) !== null ? null : urlParams;
 };
 
+export const sanitizeGraphQLQuery = urlParams => {
+  const regex = /[{}|\\//]/;
+  return regex.exec(urlParams) !== null ? null : urlParams;
+};
+
 export const isReservedWord = words => {
   return reservedWords.includes(words.toLowerCase());
 };
