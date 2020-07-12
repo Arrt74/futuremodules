@@ -109,6 +109,7 @@ export const DivFixedCenterTopMiddle = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
+  flex-wrap: ${props => props.flexWrap || "no wrap"};
   width: ${props => props.width || "auto"} ;
   font-size: ${props => props.fontSize};
   margin: ${props => props.margin || "0"};
@@ -144,6 +145,7 @@ export const FlexWithBorder = styled.div` {
 }`;
 
 export const FlexDragAndDrop = styled(Flex)` {
+  display: flex;
   border: 3px dashed var(--middle-grey-color);
   border-radius: 10px;
   background-color: var(--dark-color-transparent);
