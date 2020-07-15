@@ -14,6 +14,8 @@ export const Div = styled.div` {
   max-height: ${props => props.maxHeight || "auto"} ;
   overflow-y: ${props => props.overflowY || "inherit"} ;
   overflow-x: ${props => props.overflowX || "inherit"} ;
+  word-wrap: ${props => props.wordWrap || "normal"} ;
+  background: ${props => props.background || "none"};
 }`;
 
 export const DivWL = styled.div` {
@@ -109,6 +111,7 @@ export const DivFixedCenterTopMiddle = styled.div` {
 
 export const Flex = styled.div` {
   display: flex;
+  flex-direction: ${props => props.flexDirection || "row"};
   flex-wrap: ${props => props.flexWrap || "no wrap"};
   width: ${props => props.width || "auto"} ;
   font-size: ${props => props.fontSize};
@@ -182,6 +185,7 @@ export const FlexToolbar = styled.div` {
 export const FlexVertical = styled.div` {
   display: flex;
   flex-direction: column;
+  flex-wrap: ${props => props.flexWrap || "no wrap"};
   margin: ${props => props.margin || "0"};
   padding: ${props => props.padding || "0"};
   align-items: ${props => props.alignItems || "baseline"};
