@@ -30,6 +30,16 @@ const iconTitle = (icon, text) => {
   )
 };
 
+const iconTitleCenter = (icon, text) => {
+  return (
+    <div style={{textAlign:"center"}}>
+      <Logo1TextSpanBold><i className={icon}/></Logo1TextSpanBold>
+      <Mx05/>
+      {text}
+    </div>
+  )
+};
+
 const customIconTitle = (icon, text, color) => {
   return (
     <Fragment>
@@ -51,6 +61,13 @@ export const CustomTitle2 = (props) => {
   return (
     <Fragment>
       {iconTitle(`fas fa-${props.icon}`, props.children)}
+    </Fragment>)
+};
+
+export const CustomTitleCenter = (props) => {
+  return (
+    <Fragment>
+      {iconTitleCenter(`fas fa-${props.icon}`, props.children)}
     </Fragment>)
 };
 

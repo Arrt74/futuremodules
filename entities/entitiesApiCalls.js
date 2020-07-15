@@ -12,6 +12,15 @@ export const addEntity = async (group, fileName, fileData)  => {
   );
 };
 
+export const removeEntity = async (id)  => {
+  const headers = insertAntiForgeryTokenHeaders(octetStreamHeader());
+  return await axios.delete(`/gapi/entitymanager/${id}`, headers);
+};
+
+export const deleteEntity = async (id)  => {
+  return removeEntity(id);
+};
+
 const placeHolderEntityMaker = group => {
   return "entities/placeholder/" + group;
 };
