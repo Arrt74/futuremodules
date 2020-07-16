@@ -1,3 +1,5 @@
+const convert = require('convert-units');
+
 const reservedWords = [
   "login",
   "register",
@@ -122,3 +124,7 @@ export const logError = (text) => {
   console.trace("[Error] " + text);
 };
 
+export const convertLength = value => {
+  const ew2 = convert(value).from('m').toBest({ cutOffNumber: 10 });
+  return Math.round(ew2.val) + " " + ew2.unit;
+}
