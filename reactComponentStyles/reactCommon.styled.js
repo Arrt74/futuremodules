@@ -15,6 +15,7 @@ export const Div = styled.div` {
   overflow-y: ${props => props.overflowY || "inherit"} ;
   overflow-x: ${props => props.overflowX || "inherit"} ;
   word-wrap: ${props => props.wordWrap || "normal"} ;
+  word-break: ${props => props.wordBreak || "normal"} ;
   background: ${props => props.background || "none"};
 }`;
 
