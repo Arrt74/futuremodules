@@ -123,6 +123,8 @@ export const Flex = styled.div` {
   justify-items: ${props => props.justifyItems || "space-between"};
   min-height: ${props => props.minHeight || "auto"} ;
   height: ${props => props.height || "auto"} ;
+  background: ${props => props.background || "none"}; 
+  border-radius: ${props => props.borderRadius || 0}; 
 }`;
 
 export const FlexHighlighter = styled(Highlighter)` {
