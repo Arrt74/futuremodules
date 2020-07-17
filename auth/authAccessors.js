@@ -4,8 +4,7 @@ import {useApi} from "../api/apiEntryPoint";
 
 export const Auth = 'auth';
 
-export const insertAntiForgeryTokenHeaders = (headers) => {
-  const result = headers || {headers: {}};
+const calculateAFT = () => {
   if (document.cookie) {
     const regexSearch = `(?:(?:^|.*;\\s*)${process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE}\\s*=\\s*([^;]*).*$)|^.*$`;
     const regex = RegExp(regexSearch, "i");
@@ -14,13 +13,25 @@ export const insertAntiForgeryTokenHeaders = (headers) => {
       if (cookieContent.startsWith("s%3A")) {
         const endAft = cookieContent.indexOf(".", 4);
         if (endAft !== -1) {
-          const aft = cookieContent.substr(4, endAft - 4);
-          result["headers"][process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE] = aft;
+          return cookieContent.substr(4, endAft - 4);
         }
       }
     }
   }
+  return null;
+}
+
+export const insertAntiForgeryTokenHeaders = (headers) => {
+  const result = headers || {headers: {}};
+  const aft = calculateAFT();
+  if ( aft ) {
+    result["headers"][process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE] = aft;
+  }
   return result;
+}
+
+export const antiForgeryTokenCLIPair = () => {
+  return `${process.env.REACT_APP_EH_ANTIFORGERYTOKEN_COOKIE}=${calculateAFT()}`;
 }
 
 export const useAuth = () => {
