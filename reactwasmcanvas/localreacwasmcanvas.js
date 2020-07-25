@@ -155,6 +155,12 @@ export const loadWasmComplete = async (
     // console.log("Window Resize: ", window.innerWidth, window.innerWidth);
   });
 
+  window.addEventListener('keydown', function(e) {
+    if(e.keyCode === 32 && e.target === document.body) {
+      e.preventDefault();
+    }
+  });
+
   window.Module = {
     doNotCaptureKeyboard: true,
     arguments: argumentList,
