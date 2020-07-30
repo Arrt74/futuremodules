@@ -54,6 +54,19 @@ export const Img100 = styled.img` {
   width: 100%;
 }`;
 
+export const ImgRoundedCardH = styled.img` {
+  height: ${props => props.height || "100%"};
+  border-radius: 5px;
+  background-image: linear-gradient(var(--dark-color), var(--dark-color-transparent-very) );
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.9), 0 4px 10px 0 rgba(0, 0, 0, 0.99);
+  margin: ${props => props.margin || "inherit"};
+}`;
+
+export const Img100Round = styled.img` {
+  width: 100%;
+  border-radius: 50%;
+}`;
+
 export const Img100C = styled.img` {
   width: 100%;
   object-fit: cover;
@@ -382,6 +395,25 @@ export const SecondaryAltColorTextSpanBold = styled.span` {
   color: var(--secondary-alt-color);
   font-weight: bold;
   font-size: ${props => props.fontSize};
+}`;
+
+export const H1 = styled.h1` {
+  color: ${props => props.color || "var(--light)"};
+}`;
+export const H2 = styled.h2` {
+  color: ${props => props.color || "var(--light)"};
+}`;
+export const H3 = styled.h3` {
+  color: ${props => props.color || "var(--light)"};
+}`;
+export const H4 = styled.h4` {
+  color: ${props => props.color || "var(--light)"};
+}`;
+export const H5 = styled.h5` {
+  color: ${props => props.color || "var(--light)"};
+}`;
+export const H6 = styled.h6` {
+  color: ${props => props.color || "var(--light)"};
 }`;
 
 export const Text = styled.span` {
